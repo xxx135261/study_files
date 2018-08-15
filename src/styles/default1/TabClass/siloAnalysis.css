@@ -1,0 +1,66 @@
+/* 调仓分析样式 */
+.every-line-table .bgcolor {
+    font-weight: bold;
+}
+
+.silo-times {
+    padding: 25px 12px;
+    color: #666;
+}
+
+.table-common.silo_w tr td {
+    text-align: center;
+    border: none;
+    padding: 6px;
+    background: #fff;
+}
+
+.table-common.silo_w tr td b {
+    display: block;
+    margin-bottom: 4px;
+    color: #666;
+}
+
+/*前5大买卖*/
+.tf-deal {
+    width: 100%;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.tf-deal .every-line-table {
+    border-top: none;
+}
+
+.tf-deal .details-but {
+    float: right;
+    margin: -5px 10px -4px 0;
+}
+
+.tab-tfd {
+    width: 100%;
+    text-align: center;
+}
+
+.tab-tfd td {
+    border: 1px solid #ddd;
+    text-align: right;
+}
+
+/*证券名称样式*/
+.cl_fre_name {
+    color: #000;
+    cursor: pointer;
+}
+
+.cl_fre_name:hover {
+    color: #B60606;
+    cursor: pointer;
+}
+
+.twoselect {
+    margin-bottom: 5px;
+}
+.silo .pas-table-dropdown .dropdown-area{
+	height: auto;
+}

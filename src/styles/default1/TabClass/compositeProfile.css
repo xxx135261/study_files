@@ -1,0 +1,62 @@
+/* 组合概貌样式 */
+.composite{
+	padding-top: 5px;
+}
+.compsite_w {
+    position: relative;
+}
+.compsite_b {
+    position: absolute;
+    top: 35px;
+    left: 0px;
+    background: #fff;
+    width: 400px;
+    min-height: 223px;
+    z-index: 10;
+    display: none;
+}
+.compsite_w .comps_icons {
+    position: absolute;
+    right: 1px;
+    top: 33px;
+    z-index: 9;
+}
+.comps_icons li {
+    width: 20px;
+    height: 34px;
+    background-color: #01467a;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: none;
+}
+.comps_icons i {
+    position: absolute;
+    top: 17px;
+    left: 6px;
+    width: 10px;
+    height: 5px;
+    background: url("../../../../static/images/common/main-sprite-sheet.png") no-repeat -56px -185px;
+}
+.comps_icons li.down_w1 {
+    top: 33px;
+}
+.comps_icons li.down_w2 {
+    top: 66px;
+}
+.comps_icons li.down_w3 {
+    top: 99px;
+}
+.border_l {
+    border-left: none !important;
+}
+.border_r {
+	font-weight: 400!important;
+    border-right: none !important;
+}
+.total_r tr td {
+    border: none;
+    margin: 9px 0;
+}
+

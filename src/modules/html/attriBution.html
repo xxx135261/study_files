@@ -1,0 +1,171 @@
+<div class="realTime bution">
+    <!--日期切换-->
+    <ul class="change-time attriChangeTime">
+        <li value="0" class="sel" @click="changeTime($event)">今日</li>
+        <li value="1" @click="changeTime($event)">近一周</li>
+        <li value="2" @click="changeTime($event)">近一个月</li>
+        <li value="3" @click="changeTime($event)">近一个季度</li>
+        <li value="4" @click="changeTime($event)">近半年</li>
+        <li value="5" @click="changeTime($event)">今年</li>
+    </ul>
+    <!--图表-->
+    <div class="row">
+        <!--收益拆分-->
+        <div class="col-md-6 panel-left">
+            <div class="panel panel-default" v-loading="loading1">
+                <div class="panel-heading">
+                    <div class="panel-title">收益拆分</div>
+                </div>
+                <div class="panel-body" style="padding:73px 0px!important;" >
+                    <ul class="income-treegraph">
+                        <li class="struchart_btn1">
+                            <div class="strchart_btn_img">
+                                <p><span>股票收益</span></p>
+                                <p>
+									<span>
+                                        {{basicInfo[0]['Investment Return Contribution'].value}}
+									</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="bracket_topline"></li>
+                        <li class="bracketsline"></li>
+                        <li class="struchart_btn2">
+                            <div class="strchart_cont1">
+                                <div class="strchart_btn_img">
+                                    <p><span>基准收益</span></p>
+                                    <p>
+										<span>
+                                            {{basicInfo[0]['Bench Return Contribution'].value}}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="strchart_cont2">
+                                <div class="strchart_btn_img">
+                                    <p><span>超额收益</span></p>
+                                    <p>
+										<span>
+                                            {{basicInfo[0].overful_profit}}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bracket_leriline"></li>
+                        <li class="struchart_btn3">
+                            <div class="strchart_cont3">
+                                <div class="strchart_btn_img">
+                                    <p><span>配置收益</span></p>
+                                    <p>
+										<span>
+                                            {{basicInfo[0]['Asset Allocation Return Contribution'].value}}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="strchart_cont4">
+                                <div class="bracketstr_topline"></div>
+                                <div class="strchart_btn_img">
+                                    <p><span>选择收益</span></p>
+                                    <p>
+										<span>
+                                            {{basicInfo[0]['Stock Selection Return Contribution'].value}}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="strchart_cont5">
+                                <div class="strchart_btn_img">
+                                    <p><span>交互收益</span></p>
+                                    <p>
+										<span>
+                                            {{basicInfo[0]['Interaction Return Contribution'].value}}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--行业配置-->
+        <div class="col-md-6 panel-right">
+            <div class="panel panel-default" v-loading="loading2">
+                <div class="panel-heading">
+                    <div class="panel-title">行业配置</div>
+                </div>
+                <div class="panel-body attri-body" >
+                    <div id="attriBution_pieChart" v-echarts config="echartConfig" ref="attribute"
+                         style="width: 100%;height: 312px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--表格-->
+    <div class="attri_table" v-loading="loading1">
+        <div class="fix-table" row="2" col="1" colW="150">
+            <div class="fix-table-panel">
+                <table class="table-common" style="min-width: 100%">
+                    <tr>
+                        <th rowspan="2">行业</th>
+                        <th colspan="3">组合</th>
+                        <th colspan="3">基准</th>
+                        <th colspan="3">组合与基准的差异</th>
+                        <th colspan="3">业绩归因</th>
+                    </tr>
+                    <tr>
+                        <th>组合平均权重</th>
+                        <th>组合收益率</th>
+                        <th>组合收益贡献</th>
+                        <th>基准平均权重</th>
+                        <th>基准收益率</th>
+                        <th>基准收益贡献</th>
+                        <th>平均权重差（组合-基准）</th>
+                        <th>超额收益率</th>
+                        <th>超额收益贡献</th>
+                        <th>配置收益贡献</th>
+                        <th>选择收益贡献</th>
+                        <th>交互收益贡献</th>
+                    </tr>
+                    <tr v-for="(item, index) in basicInfo" :key="index" v-if="item.industryName!=undefined" v-show="basicInfo.length>0">
+			            <td class="left" v-html="item.industryName"></td>
+			            <td class="right" :cell="item['Average Weight'] | objToJSONString" >{{item['Average Weight'].value}}</td>
+			            <td class="right" :cell="item['Total Yield'] | objToJSONString" :class="{'green-font':item['Total Yield'].value.indexOf('-')>-1,'red-font':item['Total Yield'].value.indexOf('-')<0}">
+			              {{item['Total Yield'].value}}
+			            </td>
+			            <td class="right" :cell="item['Investment Return Contribution'] | objToJSONString" :class="{'green-font':item['Investment Return Contribution'].value.indexOf('-')>-1,'red-font':item['Investment Return Contribution'].value.indexOf('-')<0}">
+			              {{item['Investment Return Contribution'].value}}
+			            </td>
+			            <td class="right" :cell="item['Bench Average Weight'] | objToJSONString" :class="{'green-font':item['Bench Average Weight'].value.indexOf('-')>-1,'red-font':item['Bench Average Weight'].value.indexOf('-')<0}">
+			              {{item['Bench Average Weight'].value}}
+			            </td>
+			            <td class="right" :cell="item['Bench Total Yield'] | objToJSONString" :class="{'green-font':item['Bench Total Yield'].value.indexOf('-')>-1,'red-font':item['Bench Total Yield'].value.indexOf('-')<0}">
+			              {{item['Bench Total Yield'].value}}
+			            </td>
+			            <td class="right" :cell="item['Bench Return Contribution'] | objToJSONString" >{{item['Bench Return Contribution'].value}}</td>
+			            <td class="right"  :class="{'green-font':item['mean_weight'].indexOf('-')>-1,'red-font':item['mean_weight'].indexOf('-')<0}">
+			              {{item['mean_weight']}}
+			            </td>
+			            <td class="right"  :class="{'green-font':item['overful_yield'].indexOf('-')>-1,'red-font':item['overful_yield'].indexOf('-')<0}">
+			              {{item['overful_yield']}}
+			            </td>
+			            <td class="right"  :class="{'green-font':item['overful_profit'].indexOf('-')>-1,'red-font':item['overful_profit'].indexOf('-')<0}">
+			              {{item['overful_profit']}}
+			            </td>
+			            <td class="right" :cell="item['Asset Allocation Return Contribution'] | objToJSONString" :class="{'green-font':item['Asset Allocation Return Contribution'].value.indexOf('-')>-1,'red-font':item['Asset Allocation Return Contribution'].value.indexOf('-')<0}">
+			              {{item['Asset Allocation Return Contribution'].value}}
+			            </td>
+			            <td class="right" :cell="item['Stock Selection Return Contribution'] | objToJSONString" :class="{'green-font':item['Stock Selection Return Contribution'].value.indexOf('-')>-1,'red-font':item['Stock Selection Return Contribution'].value.indexOf('-')<0}">
+			              {{item['Stock Selection Return Contribution'].value}}
+			            </td>
+			            <td class="right" :cell="item['Interaction Return Contribution'] | objToJSONString" :class="{'green-font':item['Interaction Return Contribution'].value.indexOf('-')>-1,'red-font':item['Interaction Return Contribution'].value.indexOf('-')<0}">
+			              {{item['Interaction Return Contribution'].value}}
+			            </td>
+		          </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

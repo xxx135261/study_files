@@ -1,0 +1,641 @@
+/*@font-face {*/
+/*font-family: DIN;*/
+/*src: url('customfont/DIN-Medium.otf')*/
+/*}*/
+
+* {
+    font-family: 'Microsoft Yahei', Arial, sans-serif;
+    font-size: 12px;
+    color: #444;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.42857143;
+}
+
+a {
+    text-decoration: none
+}
+html,body,#app{
+	width: 100%;
+	height: 100%;
+}
+body {
+    background: #fff;
+    font-family: "微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif,'Open Sans';
+    color: #7a7676;
+    line-height: 20px;
+    overflow-x: hidden;
+    font-size: 14px;
+}
+
+input, select, textarea {
+    font-family: "微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif,'Open Sans';
+    color: #767676;
+    outline: none;
+    border: 1px solid #b5b3b3;
+}
+/*去除ie自带的input删除功能*/
+input::-ms-clear{display:none;}
+select::-ms-expand { border: 0;background: none;font-size: 12px;color: #ccc; line-height: 20px;width: 20px;}       
+a {
+    color: #65CEA7;
+}
+
+a:focus, a:active, a:hover {
+    outline: none;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #353F4F;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif,'Open Sans';
+}
+
+.mtop10 {
+    margin-top: 10px;
+}
+
+hr {
+    border-color: #ddd;
+}
+
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, table, th, td, fieldset, form, input, button, textarea, hr, blockquote, pre {
+    margin: 0;
+    padding: 0
+}
+
+ul, ol, dl {
+    list-style-type: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset, img {
+    border: none
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    empty-cells: show
+}
+
+address, caption, cite, code, dfn, th {
+    font-style: normal;
+    font-weight: normal
+}
+
+ins {
+    text-decoration: underline
+}
+
+del {
+    text-decoration: line-through
+}
+
+q:before, q:after {
+    content: ""
+}
+
+.progress {
+    height: 20px;
+}
+
+.error-font {
+    color: #ddd;
+}
+
+.green-font {
+    color: #29be1f;
+}
+
+.red-font {
+    color: #ff6966;
+}
+
+.blue-font {
+    color: #0000FF;
+}
+
+.change-time {
+    display: inline-block;
+    margin: 5px;
+    border: 1px solid #ddd;
+}
+
+.change-time li {
+    display: inline-block;
+    padding: 4px 10px;
+    border-right: 1px solid #ddd;
+    cursor: pointer;
+    margin-right: -4px;
+    color: #aaa;
+}
+.change-time li:hover {
+    background: #f5f5f5
+}
+.change-time li:last-child {
+    margin-right: 0;
+    border-right: 0;
+}
+.change-time li.sel {
+    background: #fff;
+    color: #444;
+    font-weight: bold;
+}
+
+#footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 12px;
+    color: #ddd;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+/*#nav {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    overflow: hidden
+}
+
+#nav .group-title {
+    height: 46px;
+    padding: 12px;
+    border-bottom: 1px solid #eee
+}
+
+#nav .group-title .group-name {
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold
+}
+
+#nav .group-title .fa {
+    width: 20px;
+    margin-top: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold
+}
+
+#nav .group-title .more-btn {
+    float: right;
+    cursor: pointer;
+    padding: 0 6px;
+    margin-right: -6px;
+    border-radius: 2px;
+    color: #aaa;
+    font-weight: normal;
+    line-height: 22px;
+    font-family: monospace
+}
+
+#nav .group-title .more-btn:hover {
+    background-color: #eee
+}
+
+#nav .group {
+    padding: 10px;
+    border-bottom: 1px solid #e7e7e7;
+    overflow-y: auto
+}
+
+#nav .group table {
+    width: 100%
+}
+
+#nav .group table tr td {
+    padding: 0 2px;
+    height: 27px;
+    min-height: 27px;
+    max-height: 27px;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 27px;
+    white-space: nowrap;
+    font-size: 12px
+}
+
+#nav .group table tr td:first-child {
+    font-size: 13px
+}
+
+#nav .group table tr td.red-font {
+    color: #ff6966
+}
+
+#nav .group table tr td.green-font {
+    color: #29be1f
+}
+
+#nav .group table tr td:first-child {
+    text-align: left;
+    cursor: pointer;
+    color: #666;
+    font-weight: bold
+}
+
+#nav .group table tr td:first-child:hover {
+    color: #fff
+}
+
+#nav.folder {
+    width: 100px
+}
+
+#nav.folder table {
+    width: 100%
+}
+
+#nav.folder table tr td {
+    display: none
+}
+
+#nav.folder table tr td:first-child {
+    display: block
+}*/
+
+#content {
+	position: static;
+    width: calc(100% - 12px);
+    height: calc(100% - 66px);
+    margin-left: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    border-radius: 0;
+    box-shadow: 0 3px 6px #ccc;
+    border: 1px solid #eee;
+    border-top-color: #ddd;
+}
+
+#content .home {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    bottom: 12px;
+    left: 12px
+}
+
+#content.folder {
+    left: 101px
+}
+
+#content.folder #fold-btn {
+    left: 100px
+}
+
+#content .row {
+    margin: 0
+}
+
+.red-font {
+    color: #ff6966
+}
+
+.green-font {
+    color: #29be1f
+}
+
+.error-font {
+    color: #a7a6a6
+}
+
+#tabset {
+    position: absolute;
+    width: 100%;
+    height: 100%
+}
+
+#tabset .tab-content {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding: 12px
+}
+
+#tabset #folder-btn {
+    float: left;
+    margin: 5px;
+    width: 25px;
+    cursor: pointer;
+    z-index: 5;
+    color: #aaa;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center
+}
+
+#tabset #folder-btn:hover {
+    background: #e6e6e6;
+    border-radius: 3px
+}
+
+#tabset #tabbar-panel {
+    position: absolute;
+    height: 35px;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid #ddd
+}
+
+#tabset #tabbar {
+    height: 35px;
+    overflow: hidden;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd
+}
+
+#tabset .nav-tabs {
+    display: block;
+    border: none;
+    white-space: nowrap
+}
+
+#tabset .nav-tabs li {
+    display: inline-block;
+    float: none
+}
+
+#tabset .nav-tabs li a {
+    border: none;
+    cursor: pointer;
+    height: 34px;
+    padding: 0 10px;
+    margin: 0 5px;
+    border-radius: 0;
+    color: #aaa;
+    line-height: 35px
+}
+
+#tabset .nav-tabs li.active a {
+    height: 34px;
+    font-weight: bold
+}
+#tabset .nav-tabs li a:hover {
+    background: #eee
+}
+
+#tabs-detail .dropdown-toggle {
+    line-height: 25px;
+    margin: 5px;
+    padding: 0 6px;
+    border: none;
+    border-radius: 3px;
+    color: #888
+}
+
+#tabs-detail .dropdown-toggle i {
+    color: #888
+}
+
+#tabs-detail .dropdown-menu {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-radius: 0;
+    max-height: 400px;
+    overflow: auto
+}
+
+#tabs-detail .dropdown-menu li {
+    padding: 0 12px;
+    line-height: 30px;
+    cursor: pointer;
+    border-left: 2px solid #fff;
+    color: #aaa
+}
+
+#tabs-detail .dropdown-menu li:hover, #tabs-detail .dropdown-menu li.title {
+    background-color: #eee;
+    border-color: #eee
+}
+
+#tabs-detail .dropdown-menu li.sel {
+    font-weight: bold
+}
+
+#tabs-detail .dropdown-menu li.title {
+    cursor: default;
+    color: #aaa;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd
+}
+
+.table-panel .table-common {
+    margin-left: -1px;
+    margin-top: -1px
+}
+
+.table-common {
+    background: #fff;
+    min-width: 100%
+}
+
+.table-common th, .table-common td {
+    position: relative;
+    height: 17px;
+    line-height: 17px;
+    white-space: nowrap;
+    padding: 3px 6px;
+    background-clip: padding-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #ddd
+}
+
+.table-common td {
+    font-size: 12px
+}
+
+.table-common th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #666;
+    text-align:center;
+}
+.table-right th{
+    font-weight:bold;
+    text-align:right;
+    color:#444;
+}
+.table-common .left {
+    text-align: left
+}
+
+.table-common .center {
+    text-align: center
+}
+
+.table-common .right {
+    text-align: right
+}
+.no-select {
+    moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+/*模态框*/
+.modal{
+	overflow: hidden;
+}
+.modal-open .modal.pas-modal {
+    overflow: hidden;
+}
+
+.pas-modal .modal-dialog    {
+    position: absolute;
+    top: 30px;
+    bottom: 30px;
+    left: 50%;
+    width: 926px;
+    margin: 0 0 0 -450px;
+}
+
+.pas-modal .modal-content {
+    height: 100%;
+}
+
+.pas-modal .modal-content .modal-body {
+    position: absolute;
+    top: 56px;
+    bottom: 0;
+    width: 100%;
+    padding: 12px;
+    overflow: hidden;
+}
+
+.pas-modal .modal-content .modal-body .fix-table {
+    position: absolute;
+    width: 900px;
+    height: auto;
+    top: 50px;
+    bottom: 0;
+    background: #fff;
+}
+/* 主页主体内容整体结构样式 */
+.page-heading {
+    padding: 15px;
+    position: relative;
+}
+
+.page-heading h3 {
+    color: #49586e;
+    font-size: 25px;
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+.page-heading .breadcrumb {
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+.page-heading .breadcrumb a {
+    color: #999999;
+}
+
+.page-heading .breadcrumb li.active {
+    color: #65CEA7;
+}
+
+.wrapper {
+    padding: 15px;
+}
+
+.wrapper::after {
+    clear: both;
+    display: block;
+    content: '';
+    margin-bottom: 30px;
+}
+
+.main-content {
+    position: absolute;
+    width: calc(100% - 270px);
+    height: 100%;
+    min-height: 0;
+    margin-left: 270px;
+    background: #fff;
+    transition: all .6s;
+}
+
+#content_w {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 37px);
+    background: #F5F6F8;
+}
+.panel-default > .panel-heading{
+	background: #fff;
+}
+.panel{
+	border-radius: 0;
+}
+#content .panel-left, #content .panel-right {
+    margin-bottom: 5px;
+    background: #fff;
+    padding: 0;
+    background: transparent;
+}
+
+#content .panel-left .panel, #content .panel-right .panel {
+    margin-bottom: 0;
+}
+#content .panel .panel-heading {
+    height: 26px;
+    border-bottom: 0;
+}
+
+#content .panel .panel-heading .panel-title {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 26px;
+    color: #444;
+    padding-left: 12px;
+}
+
+#accordion .panel.panel-default .panel-body {
+    margin: 0;
+}
+
+#accordion .panel-default {
+    margin-bottom: 5px;
+}
+
+#accordion ol li {
+    list-style-type: decimal;
+}
+
+#accordion ol {
+    padding: 10px 25px;
+}
+/*按钮不可点击状态下的颜色*/
+.btn-primary[disabled]{
+	opacity: 0.5;
+}
+

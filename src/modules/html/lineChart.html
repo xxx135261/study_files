@@ -1,0 +1,127 @@
+<div class="barChart">
+	<div class="midcon-60">
+		<div class="midconbox-50">
+			<div class="midconbox-con">
+				<div class="mid_header">
+					<span>指标配置</span>
+					<div class="index-input" :class="{error: !config.indexSetName}">
+	                    <label class="textred">*</label><label>指标集：</label>
+	                    <input type="text" v-model="config.indexSetName" placeholder="请输入指标集名称" />
+	                </div>
+				</div>
+				<div class="cell_con quota-config">
+					<div class="table_wrap">
+            			<div class="select-wrap">
+							 <aggConfigTemplate valueType="timeseries" :numLimit="2" ref="aggConfigTemplate" @updateSelection="handleSelection"></aggConfigTemplate>
+	                    </div>
+						<div class="table_header">
+							<span>指标名称</span>
+							<span>基础指标</span>
+							<span>指标参数</span>
+							<span>操作</span>
+						</div>
+						<ul class="table_body">
+							<li v-for="(value, index) in config.columns" :key="index" :tabindex="index">
+								<span :title="value.header">{{value.header}}</span>
+								<span :title="value.baseName">{{value.baseName}}</span>
+								<span :title="value.showProperties">{{value.showProperties}}</span>
+								<span >
+									<i class="fa fa-arrows move" @mousemove.stop="$emit('move')"></i>
+									<i class="fa fa-trash-o delete" @click.stop="$emit('deleItem',index,config.columns,'lineChart')"></i>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="midconbox-50">
+			<div class="midconbox-con">
+				<div class="mid_header">
+					<span>指标配置区域</span>
+					<div style="clear:both"></div>
+				</div>
+				<div class="cell_con">
+					<table class="input-group">
+						<tbody>
+						<tr>
+							<td width="40%"><span>坐标轴类型(X轴)：</span></td>
+							<td>
+								<select v-model="config.settings.xAxisType">
+									<option v-for="type in xAxisType" :value="type.value">
+										{{type.name}}
+									</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><span>Y左轴(数值)：</span></td>
+							<td>
+								<select v-model="config.settings.yAxisLeft">
+									<option v-for="item in config.columns" :value="item.dataIndex">
+										{{item.header}}
+									</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><span>Y轴右(数值)：</span></td>
+							<td>
+								<select v-model="config.settings.yAxisRight">
+									<option v-for="item in config.columns" :value="item.dataIndex">
+										{{item.header}}
+									</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><span>Y左轴自定义名称：</span></td>
+							<td><input type="text" v-model="config.settings.yAxisLeftCustomName"/></td>
+						</tr>
+						<tr>
+							<td><span>Y右轴自定义名称：</span></td>
+							<td><input type="text" v-model="config.settings.yAxisRightCustomName"/></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="rightcon-40">
+		<div class="midconbox-100">
+			<div class="mid_header">
+				<span>高级配置</span>
+			</div>
+			<div class="cell_con hset-wrap">
+				<div class="agg-select">
+					<span>维度选择：</span>
+					<select class="input_name" v-model="config.advancedConfig.dimension">
+						<option value="">--请选择维度--</option>
+						<option v-for="item in dimension" :value="item.uniqueId">
+							{{item.name}}
+						</option>
+					</select>
+					<span class="more">更多</span>
+				</div>
+				<div class="agg-select">
+					<span>筛选条件：</span>
+					<select class="input_name" v-model="config.advancedConfig.filtration">
+						<option value="">--请选择筛选条件--</option>
+						<option value='[Security Type in (股票)]'>股票</option>
+					</select>
+					<span class="more">更多</span>
+				</div>
+				<div class="agg-select">
+					<span>展示设置：</span>
+					<select class="input_name" v-model="config.advancedConfig.exhibition">
+						<option value="">--请选择展示设置--</option>
+						<option v-for="(option, index) in exhibitionOptions" :value="option.value">{{option.name}}</option>
+					</select>
+					<span class="more">更多</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

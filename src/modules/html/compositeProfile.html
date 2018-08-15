@@ -1,0 +1,147 @@
+<div class="realTime composite">
+    <div class="row">
+        <!--左边-->
+        <div class="col-md-3 panel-left" id="compsite-profile-left">
+            <div class="compsite_w" v-loading="loading1">
+                <table class="table-common comps_table table-right" tabId="basicInfo">
+                    <tr>
+                        <th colspan="2" class="left">基本特征</th>
+                    </tr>
+                    <tr>
+                        <th width="120px;" class="border_r">单位净值 ：</th>
+                        <td class="right border_l" :cell='basicInfo["UNAV"] | objToJSONString'>
+                            {{basicInfo["UNAV"].value}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="border_r">份&nbsp;&nbsp;&nbsp;&nbsp;额 ：</th>
+                        <td class="right border_l" :cell="basicInfo['Share'] | objToJSONString">
+                            {{basicInfo['Share'].value}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="border_r">基&nbsp;&nbsp;&nbsp;&nbsp;准 ：</th>
+                        <td class="right border_l" :cell="basicInfo['Bench Name'] | objToJSONString">{{basicInfo['Bench Name'].value}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="border_r">成立日期 ：</th>
+                        <td class="right border_l" :cell="basicInfo['Port Begin Date'] | objToJSONString">
+                            {{basicInfo['Port Begin Date'].value}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table class="table-common table-right" v-loading="loading2" tabid="fundIndexs" style="margin: 5px 0;">
+                <tr>
+                    <th colspan="2" class="left">估值特征</th>
+                </tr>
+                <tr>
+                    <th width="120px;" class="border_r">市盈率(TTM)：</th>
+                    <td class="right border_l" :cell="fundIndexs['PE'] | objToJSONString">{{fundIndexs['PE'].value}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="border_r">市&nbsp;&nbsp;净&nbsp;&nbsp;率：</th>
+                    <td class="right border_l" :cell="fundIndexs['PB'] | objToJSONString">{{fundIndexs['PB'].value}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="border_r">市销率(TTM)：</th>
+                    <td class="right border_l" :cell="fundIndexs['PSales'] | objToJSONString">
+                        {{fundIndexs['PSales'].value}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="border_r">市现率(TTM)：</th>
+                    <td class="right border_l" :cell="fundIndexs['PCF'] | objToJSONString">{{fundIndexs['PCF'].value}}
+                    </td>
+                </tr>
+            </table>
+            <table class="table-common table-right" v-loading="loading3" tabid="riskIndexs">
+                <tr class="headline">
+                    <th colspan="2" class="left">风险特征</th>
+                </tr>
+                <tr>
+                    <th width="120px;" class="border_r">VaR(1D)：</th>
+                    <td class="right border_l" :cell="riskIndexs['Normal Var'] | objToJSONString">{{riskIndexs['Normal Var'].value}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="border_r">VaR(5D)：</th>
+                    <td class="right border_l" :cell="riskIndexs['Normal Var5'] | objToJSONString">{{riskIndexs['Normal Var5'].value}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="border_r">波&nbsp;动&nbsp;率：</th>
+                    <td class="right border_l" :cell="riskIndexs['Stddev'] | objToJSONString">{{riskIndexs['Stddev'].value}}</td>
+                </tr>
+                <tr>
+                    <th class="border_r">Beta系数：</th>
+                    <td class="right border_l" :cell="riskIndexs['Beta'] | objToJSONString">
+                        {{riskIndexs['Beta'].value}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="border_r">最大回撤：</th>
+                    <td class="right border_l" :cell="riskIndexs['MaxDrawDown'] | objToJSONString">
+                        {{riskIndexs['MaxDrawDown'].value}}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="border_r">周&nbsp;转&nbsp;率：</th>
+                    <td class="right border_l" :cell="riskIndexs['Turnover Rate'] | objToJSONString">
+                        {{riskIndexs['Turnover Rate'].value}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--右边-->
+        <div class="col-md-9 panel-right" id="compsite-profile-right" style="background: none">
+            <div class="compsite-prf-top" v-loading="loading4">
+                <table class="table-common" style="margin-bottom:5px;" tabid="return">
+                    <tr>
+                        <th class="left" colspan="2">总收益</th>
+                    </tr>
+                    <tr class="center" style="height:104px;">
+                        <td class="border_r" style="padding-left:50px;">
+                            <span style="font-size: 24px; padding: 2px 5px;text-overflow:ellipsis;" v-bind:class="gains[0].value | priceColor" :cell="gains[0] | objToJSONString">{{gains[0].value}}</span>(总收益)
+                        </td>
+                        <td class="border_l">
+                            <table class="total_r" tabid="gains">
+                                <tr style="text-align: center;">
+                                    <td>日</td>
+                                    <td>周</td>
+                                    <td>月</td>
+                                    <td>今年以来</td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td v-bind:class="gains[1].value | priceColor" :cell="gains[1] | objToJSONString">
+                                        {{gains[1].value}}
+                                    </td>
+                                    <td v-bind:class="gains[2].value | priceColor" :cell="gains[2] | objToJSONString">
+                                        {{gains[2].value}}
+                                    </td>
+                                    <td v-bind:class="gains[3].value | priceColor" :cell="gains[3] | objToJSONString">
+                                        {{gains[3].value}}
+                                    </td>
+                                    <td v-bind:class="gains[4].value | priceColor" :cell="gains[4] | objToJSONString">
+                                        {{gains[4].value}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-default" v-loading="loading5">
+                <div class="panel-heading">
+                    <div class="panel-title">净值走势</div>
+                </div>
+                <div class="panel-body">
+                    <div id="compositeProfile_chart" v-echarts config="echartConfig" style="width: 100%;height: 369px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

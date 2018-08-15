@@ -1,0 +1,590 @@
+/*维度管理*/
+#manage{
+	width: 100%;
+	height: 100%;
+}
+#manage .panel-default > .panel-heading{
+	background: #f5f5f5;
+	border-bottom: 1px solid #ddd;
+}
+.tabtree{
+    margin: 5px 0px 5px 0px!important;
+	position: relative!important;
+}
+.tabtree a{
+	cursor: pointer;
+	color: #444;
+}
+.tabtree .gap{
+	margin-left: 5px;
+}
+.tabtree li.active a, .tabtree li.active a:hover, .tabtree li.active a:focus{
+	cursor: pointer;
+	position: relative;
+	bottom: -1px;
+	border-bottom-color:#fff;
+}
+.tabtree li a{
+	background: #eee;
+	padding: 5px 20px;	
+}
+.content .panel .search_panel,.content .config_panel{
+	padding: 0!important;
+	margin-top: 0!important;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.aggvsearch_panel,.selfconfig{
+	margin-top: 0!important;
+	padding-bottom: 30px;
+}
+.panel-tag {
+	position: relative;
+}
+.search_wrap{
+	width: 400px;
+	line-height: 36px;
+}
+.search_wrap span,.tag_ar span, .weidu_name span{
+	font-weight: 600;
+}
+#estab_date{
+	height: 26px;
+}
+.form-search{
+	display: inline-block;
+}
+.form-search .input_name{
+	width:200px;
+	height: 26px;
+}
+.parameter .box{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.parameter legend{
+	font-weight: 700;
+}
+.paramewrap{
+    height: 30px;
+    margin-bottom: 10px;
+    line-height: 30px;
+    line-height: 24px;
+}
+.selector{
+	height: 26px;
+	width: 200px;
+}
+.selfconfig .weidu_name input{
+	height: 26px;
+	width: 200px;
+}
+.paramewrap input,.paramewrap select{
+	width: 200px;
+	height: 24px;
+	float: right;
+}
+/*指标参数文字超出显示冒号*/
+.paramewrap span{
+    width: 114px;
+    height: 30px;
+    line-height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.box_config .rightcontent .search_wrap span{
+	font-weight: normal;
+}
+
+.form-search .sBtn{
+    height: 27px;
+    line-height: 13px;
+    vertical-align: bottom;
+}
+
+/*维度管理表格*/
+.tab-pane .sTable{
+	overflow: hidden;
+	position: relative!important;
+	left: 0;
+}
+.tab-pane .sTable table{
+	width: 100%!important;
+}
+.tab-pane .sTable label{
+	margin-bottom: 0;
+}
+.tab-pane .sTable label input{
+	vertical-align:text-top ;
+}
+.tab-pane .sTable .table-common td.right{
+	text-align: left;
+}
+
+.sTable th,.sTable td{
+	text-align: center;
+	
+}
+.sTable .th3{
+	border-right: 0;
+}
+/*收缩展开按钮*/
+.panel-tag .tools{
+	display: inline-block;
+	position: absolute;
+	top: -20px;
+	right: 5px;
+}
+.panel-tag .tools a,.weidu_config .tools a{
+	padding: 7px;
+}
+.weidu_config .tools{
+	margin: 0px;
+}
+.tools:hover a{
+	text-decoration: none;
+}
+.weidu_search .add_remove{
+	width:90%;
+	margin-top: 34px;
+	margin-left: 18px;
+	display: none;
+}
+.tag_ar{
+	width: 100%;
+    height: 25px;
+    background: #eee;
+}
+.tag_ar .add,.tag_ar .remove{
+  	display: inline-block;
+    line-height: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 2px;
+    font-size: 12px;
+}
+.tag_ar .remove img{
+	vertical-align: text-bottom;
+}
+.table_aR{
+	width: 90%;
+	height: 75px;
+	border: 1px solid #898989;
+}
+
+#u39_input{
+	width: 200px;
+	height:26px ;
+}
+/*维度树管理维度配置*/
+.weidu_config{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+.weidu_config .panel-default{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.weidu_config .design_info{
+	margin-left: 12px;
+	width: 100%;
+}
+.weidu_config .panel-title .addrow i{
+	color: #65778b;
+    font-size: 14px;
+    padding-right: 2px;
+}
+.weidu_config .panel-title .addrow{
+    padding: 2px 3px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.weidu_config .panel-title .addrow:hover{
+	background: #f4f5f6;
+	border-radius: 3px;
+	border: 1px solid #ddd;
+}
+.nav_detail{
+	width: 96%;
+	height: 30px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 20px;
+}
+.nav_detail .title{
+	width: 100px;
+	height: 32px;
+	line-height: 30px;
+	text-align: center;
+	border-bottom: 2px solid #898989;
+	font-weight: bold;
+}
+.weidu_config .left_class{
+	width: 500px;
+	height: 200px;
+}
+#config_table {
+	overflow: hidden;
+}
+.fix-table-panel .table-common{
+	min-width: 100%;
+}
+#config_table .table-common .title{
+	height:155px ;
+}
+#config_table .table-common th,#config_table .table-common td{
+	text-align: center;
+	min-width: 250px!important;
+}
+.left_class #txt{
+	margin: 0 15px 0 8px
+}
+.left_class #next{
+	display: inline-block;
+}
+
+.left_class .right{
+	margin-left: 40px;
+	margin-top: 2px;
+	margin-bottom: 8px;
+	position: relative;
+    width: 93px;
+    height: 24px;
+}
+.left_class .right .fright{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.list{
+	background: #fff;
+	font-family: arial;
+    font-size: 12px;
+    text-align: left;
+    border: 1px solid #AAA;
+	position: absolute;
+	left: 76px;
+	top:10px;
+	z-index: 1;
+}
+.list p{
+	cursor: pointer;
+    padding: 3px 8px 3px 8px;
+    margin: 5px;
+    background: #EEE none repeat scroll 0% 0%;
+    border: 1px solid #AAA;
+    border-radius: 3px;
+}
+.list .lia{
+	margin-bottom: 2px;
+}
+.left_class .right #txt{
+	margin-right: 25px;
+}
+.left_class .profit{
+	margin-left: 40px;
+}
+.left_class .profit #txt{
+	border: 1px solid #898989;
+	padding: 1px;
+	margin-right: 8px;
+}
+.right_designs{
+	width: 70%;
+	float: right;
+}
+.right_designs .select_tag{
+	width: 80px;
+	height: 30px;
+	border: 1px solid #898989;
+	text-align: center;
+	line-height: 30px;
+}
+.right_designs .select{
+	width: 430px;
+	height: 190px;
+	border: 1px solid #898989;
+}
+.right_designs .select .input{
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.left_class .title .seat{
+	position: absolute;
+    top: 36px;
+    left: 54px;
+}
+.tree-folder-name{
+	font-size: 12px;
+}
+.tree-folder-name i{
+	margin-left: 8px;
+	font-size: 12px;
+}
+
+
+/*维度配置右边内容*/
+.box_config{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.box_config .leftside {
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+/*选中节点样式*/
+.box_config .leftside .treeleft .ztree li a.curSelectedNode{
+    padding-top: 0px;
+    background-color: #f7f7f9;
+    color: black;
+    height: 18px;
+    border: 1px #9ea2b9 solid;
+    opacity: 0.9;
+}
+.box_config .leftside .treeleft{
+	width: 100%;
+	height: calc(100% - 27px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+/*维度树管理滚动条样式*/
+.box_config .leftside .treeleft::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+   	position: relative;
+   	top: 27px;
+}
+.box_config .leftside .treeleft::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    background: #ccc;
+    border-radius: 5px;
+}
+
+/*维度树管理右边*/
+.rightcon_wrap{
+    width: 80%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 20%;
+    overflow: hidden;
+    border-left: 1px solid #ddd;
+}
+.box_config .leftside .title{
+	width: 100%;
+	height: 27px;
+	line-height: 24px;
+	text-align: center;
+	color: #FFFFFF;
+	background: url('../../../../static/images/lefttag.png')no-repeat;
+    background-size: 106% 31px;
+    background-position-x: center;
+    background-position-y: bottom;
+}
+.box_config .rightcontent .save{
+    height: 26px;
+    line-height: 12px;
+    margin-left: calc(100% - 88px);
+}
+.weidu_name{
+    line-height: 20px;
+    padding-left: 12px;
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+}
+.box_config .tag_head .weidu_name{
+	display: inline-block;
+}
+.seat{
+	margin: 10px 0 0 22px;
+}
+.rightcontent{
+    width: 100%;
+    height: 100%;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+.rightcontent form{
+	margin:10px 0 ;
+}
+.edit{
+    border: 1px solid #ddd;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 96%;
+    height: 72px;
+    padding: 8px;
+    resize: none;
+}
+input{
+	color: #000000;
+	text-indent: 1em;
+}
+.box_config .rightcontent .add,
+ .selfconfig .selfsave,.selfconfig .selfadd{
+    height: 26px;
+    line-height: 12px;
+    float: right;
+    margin-right: 36px;
+}
+.selfconfig .selfsave{
+	margin-right: 42px;
+}
+.box_config .rightcontent .add,.selfconfig .selfadd{
+	margin-right: 10px;
+}
+/*分页器*/
+
+.page{
+	overflow: hidden;
+	background: #eee;
+}
+.pagination {
+   float: right;
+   line-height: 0px;
+	margin: 2px 10px 2px 0;
+  }
+.pagination li{
+    display: inline-block;
+  }
+.pagination li a{
+    padding:0.2rem 0.8rem;
+    display:inline-block;
+    border:1px solid #ddd;
+    background:#fff;
+    color:#444;
+  }
+  .pagination li a:hover{
+    background:#eee;
+  }
+  .pagination li.active a{
+    background:#444!important;
+    color:#fff;
+  }
+ #manage #tabs-167894{
+    background: #fff;
+    width: 100%;
+    position: fixed;
+    top: 109px;
+    left: 275px;
+    z-index: 1;
+ }
+ #manage .tab-content{
+ 	margin-top: 40px;
+ }
+.box_config .rightcon_wrap form fieldset{
+	width: 96%;
+    border: 1px solid #ccc!important;
+    padding: 8px!important;
+    border-top-right-radius: 8px;
+}
+/*维度划分方式*/
+.devide_search fieldset{
+	margin: 20px auto;
+	padding: 20px;
+}
+.devide_search fieldset legend{
+	font-weight: 700;
+	color: #444;
+}
+.devide_search .divide_config input{
+	width: 200px;
+	height: 26px;
+}
+.devide_search .divide_config .input_name{
+	float: right;
+	margin-top: 4px;
+}
+.divide_config .span{
+	vertical-align: super;
+}
+.divide_config{
+	width: 290px;
+	line-height: 36px;
+}
+.left_divide{
+	width: 30%;
+}
+.divider{
+	background: #f4f5f6;
+}
+.divider .header{
+	position: relative;
+}
+.divider .header .rightTab{
+	width: 50%;
+    position: absolute;
+    top: 0;
+    right: 40px;
+}
+fieldset .header .headding{
+   	border: 1px dashed #424344;
+    width: 100%;
+    height: 3px;
+    margin-bottom: 20px!important;
+    background: #65778b;
+    margin-top: -10px;
+    position: relative;
+}
+.headding .leaf1,.headding .leaf2{
+	position: absolute;
+    top: 2px;
+    font-size: 16px;
+    color: #65778b;
+}
+.headding .leaf1{
+	left: -19px;
+}
+.headding .leaf2{
+	right: -17px;
+}
+.header .rightTab .countTime{
+	width: 210px;
+	height: 24px;
+	background: #FFF;
+	border:1px solid #a9a9a9;
+	overflow: hidden;
+}
+.header .rightTab .countTime span{
+	padding-left: 10px;
+}
+.header .rightTab .countTime input{
+	border: 0;
+	width: 200px;
+	float: right;
+	line-height: 26px;
+}
+.add_remove .selfSearch,.add_remove .divideSearch{
+	width: 100%;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	padding-left: 12px;
+}
+#aggregationDefinitionName{
+	width: 200px;
+	height: 26px;
+}
+
+/*自定义维度配置选中行颜色*/
+#aggVDtTable tr:hover{
+	background: #EEEEEE;
+}
+

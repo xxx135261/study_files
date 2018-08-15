@@ -1,0 +1,16 @@
+/* 风险分析样式 */
+.retreat_t {
+    position: relative;
+}
+
+.retreat_state {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+}
+
+.vol_state {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+}

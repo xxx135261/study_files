@@ -1,0 +1,64 @@
+<div class="realTime concern" mounted-uid="myConcern">
+    <!--搜索-->
+    <div class="search normal-search">
+        <common-search :sType="inputType"></common-search>
+    </div>
+    <button type="button" @click="openSearchRow()" class="btn btn-primary break-but add-search-row">新增
+    </button>
+    <!--表格-->
+    <div class="concern_table"
+         style="position: absolute;width:calc(100% - 14px); height: calc(100% - 94px);">
+        <pas-table :data="basicInfo"
+                   :grid="basicInfoGrid"
+                   dep-id="myConcernTable"
+                   width="100%"
+                   height="100%"
+                   v-loading="loading"
+                   :sparkline="true"
+                   :colDrag="false"
+                   :resizable="false"
+                   :cell-class-name="cellClassName">
+            <pas-table-column :dep="false" :resizable="false" :sparkline="false" align="center" label="证券名称">
+                <template slot-scope="scope">
+                    <div @click="addVisit($event)" :itemScode="scope.row.data.securityId" style="cursor:pointer;">
+                        {{scope.row.data.name}}
+                    </div>
+                </template>
+            </pas-table-column>
+            <pas-table-column :resizable="false" prop="Latest Price" align="right" label="当前价"></pas-table-column>
+            <pas-table-column :resizable="false" prop="Price Fluctuation" align="right" label="涨跌(幅)"></pas-table-column>
+            <pas-table-column :resizable="false" prop="Trade Volume" align="right" label="交易量(万手)"></pas-table-column>
+            <pas-table-column :resizable="false" prop="Trade Amount" align="right" label="成交额"></pas-table-column>
+            <pas-table-column :dep="false" :sparkline="false" :resizable="false" label="移除" align="center">
+                <template slot-scope="scope">
+                    <i :itemId="scope.row.data.id" :itemScode="scope.row.data.securityId" @click="deleteData($event)"
+                       class="fa fa-times"
+                       style="font-size: 16px;cursor: pointer;color: #666"></i>
+                </template>
+            </pas-table-column>
+            <tr class="myconcern_append" slot="append">
+                <td class="next-ul">
+                    <div id="search-row" @blur="handleInputBlur()">
+                        <input class="search-ipt add_in" @blur="handleInputBlur()"  @click="handleInputClick($event)"
+                               v-on:input="watchInputValue($event)" value="" placeholder="点击搜索股票" @keydown="searchKeydown($event)"/>
+                        <ul class="search-list add_ul" v-show="inputValue.length >= 0">
+                            <li class="add_li" v-for="(stock, index) in searchResult" :key="index"
+                                @click="selectResult($event.target)" :s-code="stock.code" :s-name="stock.name">
+                                {{stock.name}}（{{stock.code}}）
+                            </li>
+                            <li class="title tit_w" v-show="notHaveTitle" style="text-align: center;">无搜索结果</li>
+                        </ul>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <i class="fa fa-times" @click="closeSearchRow()"
+                       style="font-size: 16px;cursor: pointer;color: #666"></i>
+                </td>
+            </tr>
+        </pas-table>
+    </div>
+</div>

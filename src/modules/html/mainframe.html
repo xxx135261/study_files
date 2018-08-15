@@ -1,0 +1,301 @@
+<div class='main_Wrap' v-bind:class="{'simu_wraper':isSimuhome!='' && isSimuhome!= null && isSimuhome== true}">
+    <!-- left side start-->
+    <div class="left-side sticky-left-side" style="overflow: hidden;" tabindex="5000">
+        <!--logo and iconic logo start-->
+        <div class="logo" @click="refresh()" data-step="3" data-intro="Get it, use it.">
+            <a class="bgimg" href="https://smzj.hscloud.cn/"></a>
+            <a href="javascript:;" v-if="isSimuhome == '' || isSimuhome == null || isSimuhome== false"
+               class="logo_text">
+                <span class="ch_name">投资组合分析</span>
+                <!--<span class="en_name">PORTFOLIO&nbsp;ANALYSIS</span>-->
+            </a>
+            <a href="javascript:;" v-if="isSimuhome!=''&& isSimuhome!= null && isSimuhome== true"
+               class="logo_text simu_logo">
+                <span class="simu_name">私募之家</span>
+                <span class="tz_name">投资组合分析</span>
+            </a>
+            <!--收缩侧边导航按钮-->
+            <div id="collapse_btn" @click.stop="btnClick">
+	    		<span class="fa fa-chevron-left"></span>
+	    	</div>
+        </div>
+        <!--logo and iconic logo end-->
+        <div class="left-side-inner" style="height:calc(100% - 36px);">
+            <!--sidebar nav start-->
+            <sidebar></sidebar>
+            <!--sidebar nav end-->
+        </div>
+    </div>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content">
+        <!-- header section start-->
+        <div class="header-section" data-step="1" data-intro="This is a tooltip!">
+            <!--search i clas-->
+            <form class="searchform" @submit.prevent>
+                <!--搜索-->
+                <div class="search main-search">
+                    <common-search :sType="inputType"></common-search>
+                </div>
+            </form>
+            <!--search end-->
+
+            <!--notification menu start -->
+            <div class="menu-right">
+                <div class="noLogin-menu" v-if="!isLogin">
+                    <a href="javascript:;" class="goRegister" data-toggle="modal"
+                       data-target=".modal__login">没有账号？立即注册</a>
+                    <a href="javascript:;" class="goLogin" data-toggle="modal" data-target=".modal__login"><i
+                            class="fa fa-user"></i><span>登录</span></a>
+                </div>
+                <ul class="notification-menu" v-else>
+                    <li>
+                        <a href="javascript:;" class="btn-default info-number refresh-btn"
+                           style="a.refresh-btn:hover {background: #424f63;} a.refresh-btn:active{background: #424f63;}"
+                           @click="refresh($event)" title="刷新页面">
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="btn-default info-number"
+                           style="a.refresh-btn:hover {background: #424f63;} a.refresh-btn:active{background: #424f63;}"
+                           @click="fullScreen($event)" title="全屏显示">
+                            <i class="fa  fa-arrows-alt"></i>
+                        </a>
+                    </li>
+                    <li @click="isOpen=!isOpen">
+                        <a href="javascript:;" class="btn-default dropdown-toggle info-number theme"
+                           data-toggle="dropdown-menu-head"
+                           title="主题切换">
+                            <i class="fa fa-magic"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-head pull-right" id="theme"
+                             v-bind:class="{'showBlock':isOpen!='' && isOpen== true}">
+                            <h5 class="title">更换主题</h5>
+                            <ul class="dropdown-list normal-list" id="magic">
+                                <li class="gray" @click="changeTheme($event);"></li>
+                                <li class="hundsun" @click="changeTheme($event);"></li>
+                                <li class="xiaomi" @click="changeTheme($event);"></li>
+                                <li class="segmentfault" @click="changeTheme($event);"></li>
+                                <li class="csdn" @click="changeTheme($event);"></li>
+                                <li class="purple" @click="changeTheme($event);"></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--赋权管理员-->
+                    <li id="user-op" @click="loadUserFolder()">
+                        <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                           style="padding:9px 10px;font-size:12px;">
+                            <i class="fa fa-user"></i>
+                            <span id="frame_user" style="padding-left: 1px;"></span>
+                            <span class="frame_name">{{userInfo.userName}}</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right" id="user-menu">
+                            <template v-if="isSimuhome">
+                                <li>
+                                    <a @click="openUserInfo">个人信息</a>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'portfolioAnalysis'}">模拟组合</router-link>
+                                </li>
+                            </template>
+                            <template v-else>
+                                <li v-for="(item, index) in items" :key="index" @click="userMenuClick(item)">
+                                    <a href="javascript:;" v-html="item.name"></a>
+                                </li>
+                                <li class="special">
+                                    <!--版本说明开始 -->
+                                    <div class="visioninfo special_btn">
+                                        <a href="javascript:;" @click="visionBlock($event)"
+                                           class="btn btn-default info-number" title="版本说明">
+                                            <i class="fa fa-vimeo"></i>
+                                        </a>
+                                        <div class="vision">
+                                            <div class="visionblock">
+                                                <h1 class="title">版本更新日志</h1>
+                                                <div class="year" v-for="(item,index) in visioninfo" :key="index">
+                                                    <h2 @click.stop="down($event)"><span>{{item.year}}<i></i></span>
+                                                    </h2>
+                                                    <div class="info">
+                                                        <ul>
+                                                            <li class="cls">
+                                                                <p class="date">{{item.month}}<i
+                                                                        class="fa fa-circle"></i></p>
+                                                                <p class="intro">{{item.title}}</p>
+                                                                <p class="version">&nbsp;</p>
+                                                                <div class="more">
+                                                                    <p v-for="(content,index) in item.content"
+                                                                       :key="index"><span
+                                                                            class="num">{{index+1}}.</span>{{content}}
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--版本说明结束-->
+                                    <!--新手指引按钮-->
+                                    <div class="special_btn">
+                                        <a href="javascript:;" class="btn btn-default info-number refresh-btn"
+                                           style="a.refresh-btn:hover {background: #424f63;} a.refresh-btn:active{background: #424f63;}"
+                                           @click="introStart($event,'on')" title='新手引导'>
+                                            <i class="fa fa-hand-o-up"></i>
+                                        </a>
+                                    </div>
+                                    <!--退出登录-->
+                                    <div class="special_btn">
+                                        <a href="javascript:;" class="btn btn-default info-number"
+                                           style="a.refresh-btn:hover {background: #424f63;} a.refresh-btn:active{background: #424f63;}"
+                                           @click="loginOut()" title="退出登录">
+                                            <i class="fa fa-sign-out"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--notification menu end -->
+        </div>
+        <!-- header section end-->
+        <div id="content_w" data-step="2" data-intro="Another step." data-position='right' data-scrollTo='tooltip'>
+        	<div class="combinTab"><span class="group_name" :scode="selectGroup.id" :title="selectGroup.name" v-if="selectGroup.name">{{selectGroup.name}}</span></div>
+            <!--<vue-toastr ref="toastr"></vue-toastr>-->
+            <tab-nav></tab-nav>
+            <!--切换的内容部分-->
+            <section class="panel nav_panel" id="content">
+                <div class="panel-body" style="width:100%;height:100%;margin-top:0;left:0;padding: 0">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <keep-alive>
+                                <router-view ref="currentViewInstance" v-if="$route.meta.keepAlive"></router-view>
+                            </keep-alive>
+                            <router-view ref="currentViewInstance" v-if="!$route.meta.keepAlive"></router-view>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- main content end-->
+    <!--重新登录开始-->
+    <div id="re-login-bg"></div>
+    <div id="login-panel" style="display: none;background-color:#fafafa;">
+        <div id="re-login-title">重新登录</div>
+        <div id="login-form">
+            <div class="login-form-title">当前用户 / Username：</div>
+            <div class="login-form-ipt">
+                <i class="fa fa-user"></i>
+                <input type="text" id="username" :value="userInfo.loginName" autocomplete="off" readonly>
+            </div>
+            <div class="login-form-title">密码 / Password：</div>
+            <div class="login-form-ipt">
+                <i class="fa fa-lock"></i>
+                <input type="password" id="password" autocomplete="off">
+            </div>
+            <div id="reLogin-btns">
+                <div class="reLogin-btn" id="re-exit-btn">退出</div>
+                <div class="reLogin-btn" id="re-login-btn">登录</div>
+            </div>
+            <div id="login-info"></div>
+        </div>
+    </div>
+    <!--重新登录结束-->
+
+    <!--新手引导开始-->
+    <div class="searchTip">
+        <!--第一步-->
+        <div class="newstep stepA">
+            <span class="testCover testCover1"></span>
+            <div class="tip_operate">
+                <span class="num">1</span>
+                <p class="title">菜单</p>
+                <p class="description">点击图标展开或收起左侧导航菜单</p>
+                <div class="btnwrap">
+                    <button class="up" disabled="disabled">上一步</button>
+                    <button class="next" @click="nextBtn($event,0,'down')">下一步</button>
+                </div>
+                <span class="off" @click="introStart($event,'off')"><i class="fa fa-times"></i>关闭</span>
+            </div>
+        </div>
+        <!--第二步-->
+        <div class="newstep stepB">
+            <span class="testCover testCover2"></span>
+            <div class="tip_operate">
+                <span class="num">2</span>
+                <p class="title">设置</p>
+                <p class="description">点击这里可以刷新页面，设置主题色彩，查看版本信息等...</p>
+                <div class="btnwrap">
+                    <button class="up" @click="nextBtn($event,1,'up')">上一步</button>
+                    <button class="next" @click="nextBtn($event,1,'down')">下一步</button>
+                </div>
+                <span class="off" @click="introStart($event,'off')"><i class="fa fa-times"></i>关闭</span>
+            </div>
+        </div>
+        <!--第三步-->
+        <div class="newstep stepC">
+            <span class="testCover testCover3"></span>
+            <div class="tip_operate">
+                <span class="num">3</span>
+                <p class="title">侧边导航栏目</p>
+                <p class="description">点击这里进入各个证券的详情页面！</p>
+                <div class="btnwrap">
+                    <button class="up" @click="nextBtn($event,2,'up')">上一步</button>
+                    <button class="next" @click="nextBtn($event,2,'down')">下一步</button>
+                </div>
+                <span class="off" @click="introStart($event,'off')"><i class="fa fa-times"></i>关闭</span>
+            </div>
+        </div>
+        <div class="newstep stepD">
+            <span class="testCover testCover4"></span>
+            <div class="tip_operate">
+                <span class="num">4</span>
+                <p class="title">模拟组合</p>
+                <p class="description">点击这里进行模拟组合的配置界面！</p>
+                <div class="btnwrap">
+                    <button class="up" @click="nextBtn($event,3,'up')">上一步</button>
+                    <button class="next" @click="nextBtn($event,3,'down')">下一步</button>
+                </div>
+                <span class="off" @click="introStart($event,'off')"><i class="fa fa-times"></i>关闭</span>
+            </div>
+        </div>
+        <!--第5步-->
+        <div class="newstep stepE">
+            <span class="testCover testCover5"></span>
+            <div class="tip_operate">
+                <span class="num">5</span>
+                <p class="title">主体导航</p>
+                <p class="description">点击这里可以进入各个主体页面！</p>
+                <div class="btnwrap">
+                    <button class="up" @click="nextBtn($event,4,'up')">上一步</button>
+                    <button class="next" @click="nextBtn($event,4,'down')">下一步</button>
+                </div>
+                <span class="off" @click="introStart($event,'off')"><i class="fa fa-times"></i>关闭</span>
+            </div>
+        </div>
+        <!--第6步-->
+        <div class="newstep stepF">
+            <span class="testCover testCover6"></span>
+            <div class="tip_operate">
+                <span class="num">6</span>
+                <p class="title">内容</p>
+                <p class="description">这里是主体内容！</p>
+                <div class="btnwrap">
+                    <button class="up" @click="nextBtn($event,5,'up')">上一步</button>
+                    <button class="next" @click="nextBtn($event,5,'down')">完成</button>
+                </div>
+                <span class="off" @click="introStart($event,'off')"><i class="fa fa-times"></i>关闭</span>
+            </div>
+        </div>
+    </div>
+    <!--新手引导结束-->
+
+    <!--登录注册界面-->
+    <login></login>
+</div>

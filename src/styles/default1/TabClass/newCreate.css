@@ -1,0 +1,752 @@
+/*新建视图页面*/
+.newCreate {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+}
+.newCreate .OG-layout-analytics-container{
+	height: calc(100% - 38px)!important;
+	height: -moz-calc(100% - 38px)!important;
+	height: -webkit-calc(100% - 38px)!important;
+}
+.newCreate .ui-layout-center{
+	overflow-y: hidden;
+	z-index:auto!important;
+}
+
+/*第一部分布局操作*/
+.top_header {
+    width: 100%;
+    height: 38px;
+    border-bottom: 1px solid #e0e4e7;
+    background: #F4F5F6;
+    line-height: 32px;
+    position: relative;
+}
+
+/*第三部分保存操作 start*/
+#step3 {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0.1;
+}
+
+.newCreate .bottom_header {
+    width: 100%;
+    height: 10%;
+    background: #F4F5F6;
+    line-height: 32px;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    position: relative;
+}
+
+.save_view {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    padding-top: 12px;
+    position: relative;
+}
+
+.save_view .saveView, .save_view .button, .save_view .timeZone {
+    float: left;
+    margin-right: 20px;
+}
+
+.save_view .timeZone input {
+    vertical-align: sub;
+    margin-right: 2px;
+}
+.save_view .button button {
+    height: 26px;
+    border-radius: 6px;
+    margin: 0 10px;
+    padding: 4px 12px;
+    border: 1px solid #ccc;
+    font-size: 12px !important;
+}
+
+.save_view .button img {
+    width: 1.4rem;
+    margin-right: 5px;
+}
+
+.save_view .button .delete img {
+    padding-bottom: 2px;
+}
+.button-group button span:before{
+    content: "";
+   width:16px;
+   height: 16px;
+   background-image: url("../../../../static/images/common/viewport.png");
+   background-repeat: no-repeat;
+   margin-right: 4px;
+   float: left;
+   margin-top: 5px;
+   margin-left: 2px;
+}
+.button-group button.preview span:before{
+    background-position: 0px -16px;
+    background-size: 300%;
+}
+.button-group button.save span:before{
+    background-position: -16px -16px;
+    background-size:  300%;
+}
+.button-group button.delete span:before{
+    background-position: 0px -32px;
+    background-size:  300%;
+}
+.button-group button.cancel span:before{
+    background-position: -32px -16px;
+    background-size:  300%;
+}
+
+/*第三部分保存操作 end*/
+
+
+/*页面按钮公共样式*/
+.btn-rightgroup {
+    float: right;
+    padding: 4px 5px;
+}
+.viewport-img{
+	background: url("../../../../static/images/common/viewport.png");
+}
+.splithorizon_img {
+    background-position: -64px 4px;
+}
+.Vertical_img{
+	background-position: -80px 4px;
+}
+.btn-normal {
+    border: 1px solid #ddd;
+    height: 26px;
+    line-height: 24px;
+    padding: 0 8px;
+    font-size: 12px;
+    background-color: #fff;
+    border-radius: 2px;
+    min-width: 60px;
+    text-align: center;
+    display: inline-block;
+    color: #444;
+}
+
+.btn-normal:hover {
+    background: #ededed;
+}
+
+.btn-normal i {
+    float: left;
+    margin-right: 5px;
+    width: 16px;
+    height: 24px;
+}
+/*步骤条操作样式  start*/
+.step-number {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    line-height: 17px;
+    color: #fff;
+    text-align: center;
+    background: #999;
+    border-radius: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.step-number ~ .step-desc {
+    min-height: 32px;
+    margin-left: 42px;
+}
+
+.step-desc span {
+    line-height: 34px;
+    color: #999;
+    font-size: 12px;
+}
+
+.step-desc .step-title {
+    font-size: 12px;
+    font-weight: normal;
+    color: #526069;
+    line-height: 34px;
+    font-weight: bold;
+    color: #444;
+}
+
+.step-desc {
+    text-align: left
+}
+
+.step.current {
+    color: #fff;
+    background-color: #62a8ea
+}
+
+.step.current .step-title {
+    color: #fff
+}
+
+.step.current .step-number {
+    color: #62a8ea;
+    background-color: #fff
+}
+
+.step.disabled {
+    color: #ccd5db;
+    pointer-events: none;
+    cursor: auto
+}
+
+.step.disabled .step-title {
+    color: #ccd5db
+}
+
+.step.disabled .step-number {
+    background-color: #ccd5db
+}
+
+.step.error {
+    color: #fff;
+    background-color: #f96868
+}
+
+.step.error .step-title {
+    color: #fff
+}
+
+.step.error .step-number {
+    color: #f96868;
+    background-color: #fff
+}
+
+.step.done {
+    color: #fff;
+    background-color: #46be8a
+}
+
+.step.done .step-title {
+    color: #fff
+}
+
+.step.done .step-number {
+    color: #46be8a;
+    background-color: #fff
+}
+
+/*步骤条操作样式  end*/
+
+/*第二部分元素操作*/
+#step2 {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0.1;
+}
+
+/*头部*/
+.center_head {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    overflow-y: auto;
+    background: #f4f5f6;
+}
+
+/*第二部分*/
+/*2.元素切换项*/
+.middle_tab {
+    height: calc(100% - 35px);
+}
+
+.middle_tab .tabs {
+    width: 75px;
+    height: 100%;
+    border-right: 1px solid #eee;
+    float: left;
+    padding-top: 10px;
+    background: #f4f5f6;
+}
+
+.middle_tab .tabs li {
+    width: 75px;
+    height: 30px;
+    display: inline-block;
+    font-weight: normal;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    display: block;
+    border-right: 1px solid #eee;
+}
+
+.middle_tab .tabs li.active {
+    color: #62a8ea;
+    border-bottom: 2px solid #62a8ea;
+    border-right: 1px solid #fff;
+    font-weight: bold;
+    border-top: 1px solid #eee;
+    background: #fff;
+}
+.iconimgspace li:before{
+   content: "";
+   width:16px;
+   height: 16px;
+   background-image: url("../../../../static/images/common/viewport.png");
+   background-repeat: no-repeat;
+   margin-right: 4px;
+   float: left;
+   margin-top: 6px;
+   margin-left: 10px;
+}
+/*tab图片切换*/
+.iconimgspace li{
+    text-align: left !important;
+}
+.iconimgspace li.tab-img:before{
+   background-position: 0px 1px;
+}
+.iconimgspace li.bar-img:before{
+   background-position:-16px 1px;
+}
+.iconimgspace li.line-img:before{
+   background-position:-32px 2px;
+}
+.iconimgspace li.pie-img:before{
+   background-position:-48px 0px;
+}
+.iconimgspace li.tab-img.active:before{
+   background-position: 0px -15px;
+}
+.iconimgspace li.bar-img.active:before{
+   background-position:-16px -15px;
+}
+.iconimgspace li.line-img.active:before{
+   background-position:-32px -14px;
+}
+.iconimgspace li.pie-img.active:before{
+   background-position:-48px -16px;
+}
+
+/*清除浮动*/
+.clearfix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both
+}
+.clearfix {
+    zoom: 1;
+}
+
+.clear {
+    clear: both;
+}
+
+/*公共部分*/
+.tableChart, .barChart, .lineChart, .pieChart {
+    width: calc(100% - 75px);
+    height: 100%;
+    position: relative;
+    float: right;
+}
+/*70%左侧*/
+.midcon-60{
+    width: 75%;
+    height: 100%;
+    min-height: 150px;
+    float: left;
+}
+/*tableChart   pieChart*/
+.midconbox-50 {
+    height: 100%;
+    float: left;
+	padding-right: 10px;
+}
+.midconbox-50:nth-of-type(1){
+	width: 65%;
+}
+.midconbox-50:nth-of-type(2){
+	width: 35%;
+}
+.midconbox-con {
+    float: left;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom: 0;
+}
+/*表格属性配置内容区域*/
+.midconbox-con .table-config{
+	padding: 10px;
+}
+.midconbox-con .table-config .check-select{
+    display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 12px;
+	padding-right: 10px;
+}
+.midconbox-con .table-config .check-select input
+{
+    vertical-align: sub;
+    margin-right: 8px;
+}
+
+.midconbox-con .table-config .header{
+	display: block;
+    height: 24px;
+    border-bottom: 1px solid #ccc;
+}
+.midconbox-con .table-config .header span{
+	display: block;
+    width: 88px;
+    line-height: 22px;
+    color: #62a8ea;
+    border-bottom: 2px solid #62a8ea;
+}
+.midconbox-con .table-config .header i{
+	color: #62a8ea;
+	margin: 0 4px 0 2px;
+	cursor: pointer;
+	transition: all .4s;
+}
+ .midconbox-con .table-config .header .expand{
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+ }
+
+.midconbox-con .table-config .content .label{position: relative;padding: 0;top: 1px;}
+.midconbox-con .table-config .content .label .input{display:none}
+.midconbox-con .table-config .content .label .span{    
+ 	display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #62a8ea;
+}
+.midconbox-con .table-config .content .label .input:checked+.span:after{
+    content: "";
+    position: absolute;
+    left: 2px;
+    width: 15px;
+    top: 0px;
+    height: 7px;
+    border: 2px solid #62a8ea;
+    border-top-color: transparent;
+  	border-right-color: transparent;
+ 	-ms-transform: rotate(-60deg); 
+ 	-moz-transform: rotate(-60deg); 
+ 	-webkit-transform: rotate(-60deg); 
+ 	transform: rotate(-45deg);
+ }
+ .midconbox-con .table-config .align-way{
+    width: 100%;
+ 	height: auto;
+ }
+ .midconbox-con .table-config .align-way .align{
+    height: 24px;
+    width: 100%;
+ }
+ .midconbox-con .table-config .all_config {
+ 	min-width: 140px;
+ }
+ .midconbox-con .table-config .col_config {
+ 	min-width: 140px;
+ }
+ .midconbox-con .table-config .col_config .content{
+ 	overflow: hidden;
+ }
+
+/*30%右侧*/
+.rightcon-40{
+    width:25%;
+    height: 100%;
+    padding-bottom: 0;
+    border-left: 1px solid #ddd;
+    float: left;
+    min-height: 150px;
+}
+.midconbox-100 {
+    width: 100%;
+    height: 100%;
+}
+
+/*mid_header头部*/
+.mid_header {
+	position: relative;
+	min-height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+
+}
+.mid_header span {
+    line-height: 26px;
+    font-size: 12px;
+    width: 20px;
+    font-weight: bold;
+}
+.mid_header .btn{
+    height: 26px;
+    line-height: 12px;
+    float: right;
+    margin: 2px;
+}
+/*头部搜索框(指标集)*/
+.index-input{
+	position: absolute;
+	top: 0;
+	right: 4px;
+    font-size: 12px;
+    line-height: 30px;
+    width: calc(100% - 125px);
+    min-width: 130px;
+}
+.index-input.error input{
+    border: 1px solid red;
+}
+.textred{
+    color: red;
+    line-height: 22px;
+}
+.index-input label{
+    font-size: 12px;
+    font-weight: normal;
+    padding-right: 4px;
+}
+.index-input input{
+    width: calc(100% - 66px);
+    height: 24px;
+  	border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+/*指标配置区域输入框*/
+/*输入框外层*/
+.cell_con {
+    width: 100%;
+    height: calc(100% - 30px);
+    background: #fff;
+    overflow-y: auto;
+}
+
+.cell_con ul {
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+.input-group {
+    width: 100%;
+    height: calc(100% - 27px);
+    padding: 10px 5px 0 5px;
+}
+.input-group tr{
+	height: 26px;
+	line-height: 26px;
+	margin: 16px auto;
+}.input-group tr td:first-child{
+	width: 120px;
+}
+.input-group span {
+    font-size: 12px;
+    line-height: 26px;
+    display: block;
+    text-align: right;
+}
+
+.input-group select, .input-group input {
+    border: 1px solid #ddd;
+    font-size: 12px;
+    line-height: 26px;
+    width: 100%;
+    min-width: 100px;
+    height: 26px;
+    margin-bottom: 5px;
+}
+
+/*元素选择样式   end*/
+/*表格部分*/
+.quota-config .table_wrap{
+	width: 100%;
+	min-width: 330px;
+	height: 100%;
+	padding: 5px;
+}
+.quota-config .table_wrap .table_header{
+    width: 100%;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    border-top: 0;
+    height: 26px;
+    line-height: 26px;
+    background: #f4f5f6;
+    padding: 0!important;
+}
+.quota-config .table_wrap .table_header span{
+	display: block;
+	float: left;
+    padding: 0;
+    height: 100%;
+    line-height: 25px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    font-weight: 600;
+}
+.quota-config .table_wrap .table_header span:nth-of-type(1){
+	width: 20%;
+}
+.quota-config .table_wrap .table_header span:nth-of-type(2){
+	width: 20%;
+}
+.quota-config .table_wrap .table_header span:nth-of-type(3){
+	width: 45%;
+}
+.quota-config .table_wrap .table_header span:last-child{
+	border-right: 0;
+	width: 15%;
+}
+.quota-config .table_wrap .table_body{
+    width: 100%;
+    border-radius: 0;
+    height: calc(100% - 54px);
+    border-top: 1px solid #ccc!important;
+    border: 1px solid #ccc!important;
+}
+.quota-config .table_wrap .table_body li{
+	padding-left: 0!important;
+	border: 0!important;
+	line-height: 2rem;
+    height: 2rem;
+}
+.quota-config .table_wrap .table_body li:hover span,.quota-config .table_wrap .table_body li:focus span{
+	cursor: default;
+	background: #F4F5F6;
+}
+.quota-config .table_wrap .table_body li span:last-child{
+    border-right: 0;
+    width: 15%;
+    text-align: center;
+    white-space: unset;
+}
+.quota-config .table_wrap .table_body li span:last-child i{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.quota-config .table_wrap .table_body li span:last-child .move:hover{
+	color: #62a8ea;
+	cursor: move;
+}
+.quota-config .table_wrap .table_body li span:last-child .delete:hover{
+	color: #62a8ea;
+	cursor: pointer;
+}
+
+.quota-config .table_wrap .table_body li span{
+    display: block;
+    float: left;
+    height: 24px;
+    border: 1px solid #ccc;
+    border-top: 0;
+    border-left: 0;
+    white-space: nowrap;
+    padding:0 2px;
+    background-clip: padding-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.quota-config .table_wrap .table_body li span:nth-of-type(1){
+	width: 20%;
+}
+.quota-config .table_wrap .table_body li span:nth-of-type(2){
+	width: 20%;
+}
+.quota-config .table_wrap .table_body li span:nth-of-type(3){
+	width: 45%;
+}
+.quota-config .table_wrap .table_body li:hover{
+	background: none!important;
+	cursor: auto!important;
+}
+
+/*指标选择区域*/
+.quota-config .select-wrap{
+    height: 28px;
+    width: 100%;
+    line-height: 28px;
+    border-bottom: 0;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+.quota-config .select-wrap select{
+    width: calc(100% - 70px);
+    float: right;
+    height: 24px;
+    margin-right: 2px;
+    border: 1px solid #ddd;
+}
+
+/*高级设置*/
+.hset-wrap {
+	padding: 0 10px;
+}
+.hset-wrap .agg-select{
+    height: 26px;
+    line-height: 26px;
+    width: 100%;
+    min-width: 218px;
+    margin: 10px auto;
+}
+.hset-wrap .agg-select select{
+    width: calc(100% - 120px);
+    
+    height: 26px;
+    border: 1px solid #ddd;
+}
+.hset-wrap .agg-select .more{
+	border: 1px solid #ddd;
+    height: 26px;
+    line-height: 24px;
+    padding: 0 8px;
+    font-size: 12px;
+    background-color: #fff;
+    border-radius: 2px;
+    min-width: 50px;
+    text-align: center;
+    display: inline-block;
+    color: #36A1E6;
+    cursor: pointer;
+}

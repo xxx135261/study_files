@@ -1,0 +1,21 @@
+/* 组合分析样式 */
+.combin_wrap {
+    position: relative;
+}
+
+.combin_wrap select, .echartTime {
+    position: absolute;
+    top: 3px;
+    right: 17px;
+    z-index: 2;
+    width: 192px!important;
+    height: 20px;
+    border: 1px solid #ddd;
+    outline: none;
+    margin-bottom: 0;
+}
+
+.echartTime {
+    width: 100px;
+}
+

@@ -1,0 +1,236 @@
+<div class="realTime silo">
+    <div class="onemonth">
+        <ul class="change-time siloChangeTime">
+            <li :value="0" class="sel" @click="changeTime($event)">今日</li>
+            <li :value="1" @click="changeTime($event)">近一周</li>
+            <li :value="2" @click="changeTime($event)">近一个月</li>
+            <li :value="3" @click="changeTime($event)">近一个季度</li>
+            <li :value="4" @click="changeTime($event)">近半年</li>
+            <li :value="5" @click="changeTime($event)">今年</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-6 panel-left">
+            <div class="panel panel-default" v-loading="loading5">
+                <div class="panel-heading">
+                    <div class="panel-title">交易分析</div>
+                </div>
+                <div class="panel-body silo_w" style="padding:5px;height: 122px;">
+		          <span>{{siloInfo.silo_round}}共调仓</span><span class="blue-font">{{siloInfo['Trade Count']}}</span>次，共
+		          <span class="blue-font">{{siloInfo['Good Trade Count']}}</span>次赚了钱，调仓收益共
+		          <span class="bold-font" :class="siloInfo['Trade PnL']=='--'?'blac-font':(siloInfo['Trade PnL']=='0.00'?'yellow-font':(siloInfo['Trade PnL'].indexOf('-')>-1?'green-font':'red-font'))">{{siloInfo['Trade PnL']}}</span>元，通过调仓中获得最大盈利的股票为
+		          <span class="blue-font" style="cursor:pointer;" @click="addVisit($event)" :securityid="heavyIndustry[0].securityId">{{heavyIndustry[0].name}}</span>。<br/>买入量最大的股票为
+		          <span class="blue-font" style="cursor:pointer;" @click="addVisit($event)" :securityid="awkwardness[0].securityId">{{awkwardness[0].name}}</span>，卖出量最大的股票为
+		          <span class="blue-font" style="cursor:pointer;" @click="addVisit($event)" :securityid="awkwardness[0].securityId_sell">{{awkwardness[0].name_sell}}</span>。
+		        </div>
+            </div>
+        </div>
+        <div class="col-md-6 panel-right">
+            <!--日均换手率-->
+            <div class="panel panel-default" v-loading="loading6">
+                <div class="panel-heading">
+                    <div class="panel-title">日均换手率</div>
+                </div>
+                <div class="panel-body" style="padding: 12px;">
+                    <div style="text-align: center;font-family: monospace;font-size: 35px;" class="blue-font">
+                        {{dailyExchangeRate.value}}
+                    </div>
+                    <div class="progress" style="background: #ddd;margin-bottom: 10px;">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45"
+                             aria-valuemin="0" aria-valuemax="100"
+                             style="width: dailyExchangeRate.value;"></div>
+                    </div>
+                    <div style="text-align: center;color: #666">相当于每<span
+                            class="blue-font">{{dailyExchangeRate.transValue}}</span>天把手中的全部股票换一遍
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--前5大买卖-->
+    <div class="tf-deal silo_table">
+        <div class="table-title breakdown">
+            <button type="button" class="btn btn-primary break-but" data-toggle="modal" data-target=".fivedrag">明细
+            </button>
+        </div>
+        <table class="table-common" tabid="pre_buy" v-loading="loading1">
+            <tr>
+                <th colspan="8" class="left" style="padding-left: 12px;">前5大买卖</th>
+            </tr>
+            <tr>
+                <th colspan="4">买入前五</th>
+                <th colspan="4">卖出前五</th>
+            </tr>
+            <tr>
+                <th>证券名称</th>
+                <th>买入数量</th>
+                <th>买入均价</th>
+                <th>买入金额</th>
+                <th>证券名称</th>
+                <th>卖出数量</th>
+                <th>卖出均价</th>
+                <th>卖出金额</th>
+            </tr>
+            <tr v-for="(item, index) in awkwardness" :key="index">
+                <td class="center buy_td">
+		      	<span class="cl_fre_name" style="position:relative;" @click="addVisit($event)" :securityid="item.securityId"
+	                  :title="item.name">{{item.name}}
+		        </span>
+        		</td>
+		        <td class="right buy_td" :cell="item['Buy Volume'] | objToJSONString">{{item['Buy Volume'].value}}</td>
+		        <td class="right buy_td" :cell="item['Buy Price Range'] | objToJSONString">{{item['Buy Price Range'].value}}</td>
+		        <td class="right buy_td" :cell="item['Buy Amount'] | objToJSONString">{{item['Buy Amount'].value}}</td>
+		        <td class="center sell_td">
+			      	<span class="cl_fre_name"
+		                style="position:relative;" @click="addVisit($event)" :title="item.name_sell"
+		                :securityid="item.securityId_sell">{{item.name_sell}}
+			        </span>
+		        </td>
+		        <td class="right sell_td" :cell="item['Sell Volume'] | objToJSONString">{{item['Sell Volume'].value}}</td>
+		        <td class="right sell_td" :cell="item['Sell Price Range'] | objToJSONString">{{item['Sell Price Range'].value}}</td>
+		        <td class="right sell_td" :cell="item['Sell Amount'] | objToJSONString">{{item['Sell Amount'].value}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="tf-deal">
+        <div class="table-title breakdown">
+            <button type="button" class="btn btn-primary break-but" data-toggle="modal" data-target=".silodrag">明细
+            </button>
+        </div>
+        <table class="table-common" tabid="adjust_table" v-loading="loading2">
+            <thead>
+            <tr>
+                <th colspan="8" class="left" style="padding-left: 12px;">调仓收益</th>
+            </tr>
+            <tr>
+                <th colspan="4">调仓盈利前五</th>
+                <th colspan="4">调仓亏损前五</th>
+            </tr>
+            <tr>
+                <th>证券名称</th>
+                <th>总体盈亏（持仓不变）</th>
+                <th>总体盈亏（调仓后）</th>
+                <th>调仓收益</th>
+                <th>证券名称</th>
+                <th>总体盈亏（持仓不变）</th>
+                <th>总体盈亏（调仓后）</th>
+                <th>调仓收益</th>
+            </tr>
+            </thead>
+            <tbody>
+             <tr v-for="(item, index) in heavyIndustry" :key="index">
+		        <td class="center profit_td">
+			          	<span class="cl_fre_name" style="position:relative;" @click="addVisit($event)"
+		                      :securityid="item.securityId" :title="item.name">{{item.name}}
+		                </span>
+		        </td>
+		        <td class="right profit_td" :cell="item['Nontrade PnL'] | objToJSONString">{{item['Nontrade PnL'].value}}</td>
+		        <td class="right profit_td" :cell="item['Range PnL'] | objToJSONString">{{item['Range PnL'].value}}</td>
+		        <td class="right profit_td" :cell="item['Trade PnL'] | objToJSONString">{{item['Trade PnL'].value}}</td>
+		        <td class="center loss_td">
+			          	<span class="cl_fre_name" style="position:relative;" @click="addVisit($event)" :title="item.name_loss"
+		                    :securityid="item.securityId_loss">{{item.name_loss}}
+		                </span>
+		        </td>
+		        <td class="right loss_td" :cell="item['Nontrade PnL_loss'] | objToJSONString">{{item['Nontrade PnL_loss'].value}}</td>
+		        <td class="right loss_td" :cell="item['Range PnL_loss'] | objToJSONString">{{item['Range PnL_loss'].value}}</td>
+		        <td class="right loss_td" :cell="item['Trade PnL_loss'] | objToJSONString">{{item['Trade PnL_loss'].value}}</td>
+		      </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 前五大买卖明细内容 edit by gf -->
+    <div class="modal fade pas-modal fivedrag" tabindex="-1" role="dialog" aria-labelledby="fivedrag_title">
+        <div class="modal-dialog modal-lg" role="document" v-modal-drag>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="font-size:21px;">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="fivedrag_title">买卖明细</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="twoselect">
+                        <ul class="fivedragRecentime change-time">
+                            <li value="0" class="sel" @click="changeFiveBuyOrSell($event)">今日</li>
+                            <li value="1" @click="changeFiveBuyOrSell($event)">近一周</li>
+                            <li value="2" @click="changeFiveBuyOrSell($event)">近一个月</li>
+                            <li value="3" @click="changeFiveBuyOrSell($event)">近一个季度</li>
+                            <li value="4" @click="changeFiveBuyOrSell($event)">近半年</li>
+                            <li value="5" @click="changeFiveBuyOrSell($event)">今年</li>
+                        </ul>
+                    </div>
+                    <div class="detail_table" style="width: 900px; height: 90%;">
+                        <pas-table :data="fivedealInfo"
+                                   :grid="fivedealInfoGrid"
+                                   v-loading="loading3"
+                                   dep-id="detail_buy"
+                                   width="900px"
+                                   height="calc(90% - 20px)">
+                            <pas-table-column label="证券名称" prop="name" :dep="false" :resizable="false" align="left">
+                                <template slot-scope="scope">
+                                    <span class="cl_fre_name" v-html="scope.row.data.name" style="position:relative;"
+                                          :securityid="scope.row.data.securityId" :title="scope.row.data.name"
+                                          @click="addFiveVisit($event)">
+				                        </span>
+                                </template>
+                            </pas-table-column>
+                            <pas-table-column label="买入数量" prop="Buy Volume" :resizable="false" align="right"></pas-table-column>
+                            <pas-table-column label="买入价格" prop="Buy Price Range" :resizable="false" align="right"></pas-table-column>
+                            <pas-table-column label="买入金额" prop="Buy Amount" :resizable="false" align="right"></pas-table-column>
+                            <pas-table-column label="卖出数量" prop="Sell Volume" :resizable="false" align="right"></pas-table-column>
+                            <pas-table-column label="卖出价格" prop="Sell Price Range" :resizable="false" align="right"></pas-table-column>
+                            <pas-table-column label="卖出金额" prop="Sell Amount" :resizable="false" align="right"></pas-table-column>
+                        </pas-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 调仓收益明细内容 edit by gf -->
+    <div class="modal fade pas-modal silodrag" tabindex="-1" role="dialog" aria-labelledby="silodrag_title">
+        <div class="modal-dialog modal-lg" role="document" v-modal-drag>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="font-size:21px;">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="silodrag_title">调仓收益</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="twoselect">
+                        <ul class="siloRecentime change-time">
+                            <li value="0" class="sel" @click="changeYieldDetail($event)">今日</li>
+                            <li value="1" @click="changeYieldDetail($event)">近一周</li>
+                            <li value="2" @click="changeYieldDetail($event)">近一个月</li>
+                            <li value="3" @click="changeYieldDetail($event)">近一个季度</li>
+                            <li value="4" @click="changeYieldDetail($event)">近半年</li>
+                            <li value="5" @click="changeYieldDetail($event)">今年</li>
+                        </ul>
+                    </div>
+                    <div class="detail_table" style="width: 900px; height: 90%;">
+                        <pas-table :data="adjustedInfo"
+                                   :grid="adjustedInfoGrid"
+                                   v-loading="loading4"
+                                   dep-id="detail_silo"
+                                   width="900px"
+                                   height="calc(90% - 20px)">
+                            <pas-table-column label="证券名称" prop="name" :dep="false" :resizable="false" align="left">
+                                <template slot-scope="scope">
+                                    <span class="cl_fre_name" v-html="scope.row.data.name" style="position:relative;"
+                                          :securityid="scope.row.data.securityId" :title="scope.row.data.name|securityNameFilter"
+                                          @click="addVisit($event)">
+				                        </span>
+                                </template>
+                            </pas-table-column>
+                            <pas-table-column label="总体盈亏（持仓不变）" prop="Nontrade PnL" :resizable="false" align="right"></pas-table-column>
+                            <pas-table-column label="总体盈亏（调仓后）" prop="Range PnL" :resizable="false" align="right"></pas-table-column>
+                            <pas-table-column label="调仓收益" prop="Trade PnL" :resizable="false" align="right"></pas-table-column>
+                        </pas-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 调仓收益明细内容结束 -->
+</div>

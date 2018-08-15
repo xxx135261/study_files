@@ -1,0 +1,16 @@
+/*首行文字*/
+.top-notice {
+    padding: 4px 5px;
+    margin-bottom: 12px;
+}
+
+/*弹窗样式*/
+.twoselect select {
+    width: 115px;
+    float: right;
+    margin-left: 30px;
+    height: 28px;
+}
+.position .pas-table-dropdown .dropdown-area{
+	height: auto;
+}

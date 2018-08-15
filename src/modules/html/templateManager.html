@@ -1,0 +1,239 @@
+<div id="templateManager" class="modal pas-modal template" tabindex="-1" role="dialog"
+     aria-labelledby="newcomdel_title" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog template_dialog" role="document" v-modal-drag>
+        <div class="modal-content">
+            <div class="template_header modal-header">
+                <h4 class="modal-title">模板管理</h4>
+                <button type="button" class="close_btn" @click="handleModalClosed" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="template_body">
+                <!--中间头部操作按钮-->
+                <div class="body_header">
+                    <ul class="btn_operate">
+                        <li tabindex="0" data-toggle="modal" data-target=".new_add">
+                        	<button class="highlight"><span class="bgimg img1"></span>新增</button>
+                        </li>
+                        <li tabindex="0" data-toggle="modal" @click="handleModifyModalOpened">
+                        	<button><span class="bgimg img2"></span>修改</button>
+                        </li>
+                        <li tabindex="0" data-toggle="modal" @click="handleDeleteModalOpened">
+                        	<button><span class="bgimg img3"></span>删除</button>
+                        </li>
+                        <li tabindex="0" data-toggle="modal" @click="confirmSavaMpColInfo">
+                        	<button><span class="bgimg img4"></span>保存</button>
+                        </li>
+                        <li tabindex="0" data-toggle="modal" @click="handleFileUploadModalOpened">
+                        	<button><span class="bgimg img5"></span>参考文件</button>
+                        </li>
+                    </ul>
+                </div>
+                <!--中间左右部分-->
+                <div class="main">
+                    <div class="main_left">
+                        <div class="move_handle"></div>
+                        <table id="mp_list_table" class="left_table">
+                            <thead>
+                            <tr>
+                                <th>模板名称</th>
+                                <th>数据来源</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="mp_row" v-for="(mp, index) in mpList" :key="index" :mp-id="mp.mp_id"
+                                @click="handleMpRowClick($event, mp)">
+                                <td>{{mp.mp_name}}</td>
+                                <td>{{mpTypeList[mp.mp_type - 1].name}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="main_right">
+                        <table class="right_table">
+                            <thead>
+                            <tr>
+                                <th>需求列名</th>
+                                <th>文件列名</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(mpCol, index) in mpColInfoForm" :key="index">
+                                <td>{{(index + 1) + ": " + mpCol.col_name}}</td>
+                                <td style="text-align: center" tabindex="-1">
+                                    <select v-model="mpCol.port_colplace">
+                                        <option v-for="fileCol in fileCols" :value="fileCol.colPlace">
+                                            {{fileCol.colName}}
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="template_footer">
+                <button type="button" class="btn btn-primary" @click="handleModalClosed">关闭</button>
+            </div>
+        </div>
+    </div>
+    <!--新增弹窗-->
+    <div class="modal pas-modal new_add btnmodal" tabindex="-1" role="dialog" aria-labelledby="comexcel_title"
+         data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-btn" role="document" v-modal-drag>
+            <div class="modal-content">
+                <div class="modal-header btnmodal_header">
+                    <button type="button" class="close_btn" @click="closeAddModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="titles">新增模板信息</h4>
+                </div>
+                <div class="btnmodal-body">
+                    <div class="main">
+                    	<div class="temp_name">
+                            <span><i>*</i>模板名称：</span>
+                            <input type="text" name="template_name" v-model="mpForm.mpName"/>
+                            <span class="form_check_fail" v-show="!addFormCheckFlag">必填项</span>
+                      </div>
+                        <div class="data_resource">
+                            <span><i>*</i>数据来源：</span>
+                            <select name="template_name" v-model="mpForm.mpType">
+                                <option v-for="mpType in mpTypeList" :value="mpType.id">{{mpType.name}}</option>
+                            </select>
+                            <span class="form_check_fail" v-show="!addFormCheckFlag">必填项</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnmodal-footer">
+                    <button type="button" class="btn btn-default" @click="closeAddModal">取消
+                    </button>
+                    <button type="button" class="btn btn-primary" @click="confirmCreateMp">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改弹窗-->
+    <div class="modal pas-modal modified btnmodal" tabindex="-1" role="dialog" aria-labelledby="comexcel_title"
+         data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-btn" role="document" v-modal-drag>
+            <div class="modal-content">
+                <div class="modal-header btnmodal_header">
+                    <button type="button" class="close_btn" @click="closeModifyModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="titles">修改模板信息</h4>
+                </div>
+                <div class="btnmodal-body">
+                    <div class="main" v-if="mpForm && mpForm.mpType">
+                        <div class="temp_name">
+                            <span><i>*</i>模板名称：</span>
+                            <input type="text" name="template_name" v-model="mpForm.mpName"/>
+                            <span class="form_check_fail" v-show="!modifyFormCheckFlag">必填项</span>
+                        </div>
+                        <div class="data_resource">
+                        	<span><i>*</i>数据来源：</span>
+                            <input type="text" name="template_name" :value="mpTypeList[mpForm.mpType - 1].name" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnmodal-footer">
+                    <button type="button" class="btn btn-default" @click="closeModifyModal">取消
+                    </button>
+                    <button type="button" class="btn btn-primary" @click="confirmUpdateMp">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--删除弹窗-->
+    <div class="modal delete save btnmodal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-btn" role="document">
+            <div class="modal-content">
+                <div class="modal-header btnmodal_header">
+                    <button type="button" class="close_btn" @click="closeDeleteModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="titles">提示信息</h4>
+                </div>
+                <div class="btnmodal-body">
+                    确定删除吗？
+                </div>
+                <div class="btnmodal-footer">
+                    <button type="button" class="btn btn-default" @click="closeDeleteModal">取消</button>
+                    <button type="button" class="btn btn-primary" @click="confirmDelMp">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--参考文件弹窗-->
+    <div class="modal pas-modal reference btnmodal" tabindex="-1" role="dialog" aria-labelledby="comexcel_title"
+         data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-btn" role="document" v-modal-drag>
+            <div class="modal-content">
+                <div class="modal-header btnmodal_header">
+                    <button type="button" class="close_btn" @click="closeFileUploadModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="titles">上传文件</h4>
+                </div>
+                <div class="btnmodal-body">
+                	<div>
+	                    <span class="inputname"><i>*</i>上传的文件(文件类型：xls/xlsx/csv)：</span>
+	                    <div class="upload" style="position: relative;">
+	                        <input type="file" class="import_file" id="loadMpColFile"/>
+	                    </div>
+	                    <span class="form_check_fail" v-show="!fileUploadFormCheckFlag">请选择文件</span>
+	                </div>
+                </div>
+                <div class="btnmodal-footer">
+                    <button type="button" class="btn btn-default" @click="closeFileUploadModal">取消
+                    </button>
+                    <button type="button" class="btn btn-primary" @click="confirmUploadFile">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--是否选中的提示信息-->
+    <div class="modal selected btnmodal" tabindex="-1" role="dialog" aria-labelledby="select_title"
+         data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-btn" role="document">
+            <div class="modal-content">
+                <div class="modal-header btnmodal_header">
+                    <button type="button" class="close_btn" @click="closeNoticeModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="titles" id="select_title">提示信息</h4>
+                </div>
+                <div class="btnmodal-body">
+                    请先选中一个模板
+                </div>
+                <div class="btnmodal-footer">
+                    <button type="button" class="btn btn-primary" @click="closeNoticeModal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--文件列验证错误信息提示窗-->
+    <div class="modal validate_form btnmodal" tabindex="-1" role="dialog" aria-labelledby="select_title"
+         data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-btn" role="document">
+            <div class="modal-content">
+                <div class="modal-header btnmodal_header">
+                    <button type="button" class="close_btn" @click="closeNoticeModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="titles">提示信息</h4>
+                </div>
+                <div class="btnmodal-body" id="validate_error_msg">
+                    {{valErrorMsg}}
+                </div>
+                <div class="btnmodal-footer">
+                    <button type="button" class="btn btn-primary" @click="closeValFormModal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

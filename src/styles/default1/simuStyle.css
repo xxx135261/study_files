@@ -1,0 +1,29 @@
+/*私募之家Style*/
+.simu_wraper .logo .bgimg {
+    background: url('./../../../static/images/common/logos/simuLogo.png') no-repeat;
+}
+.simu_wraper .simu_logo{
+	padding: 8px 0 0 10px;
+	display: block;
+	position: absolute;
+	text-align: center;
+	right: 70px;
+}
+.simu_wraper .simu_logo span {
+	display:block;
+  text-align: left;
+  color: #fff;
+  letter-spacing: 2px;
+  line-height: 1.2!important;
+  padding-right: 0!important;
+}
+.simu_wraper .simu_logo .simu_name{
+	font-size: 19px;
+	font-weight: 600;
+  padding-right: 52px;
+  letter-spacing: 8px;
+}
+.simu_wraper .simu_logo .tz_name{
+	font-size: 15px;
+    padding-right: 52px;
+}

@@ -1,0 +1,212 @@
+.tab-content{
+	width: 100%;
+	height: 100%;
+}
+.tab-content .active{
+	height: 100%;
+}
+#selectDetail{
+	width: 100%;
+	height: 100%;
+	
+}
+#selectDetail .modal-header{
+    padding:8px 0 8px 15px;
+}
+#selectDetail .modal-header button{
+    margin-top: -6px;
+    margin-right: 10px;
+}
+#selectDetail .modal-header span{
+    color: #000000;
+    font-size: 24px;
+}
+#selectDetail .modal-title{
+	font-size: 16px;
+}
+#selectDetail .modal-body{
+	position: relative!important;
+	top: 0;
+	padding: 0!important;
+	height: calc(100% - 80px);
+}
+#selectDetail .modal-footer{
+    padding-top: 10px;
+    margin-top: 0px;
+}
+#selectDetail .modal-footer button{
+	height: 26px;
+	line-height: 12px;
+}
+#selectDetail .title{
+	width: 100%;
+	height: 24px;
+	background: #eee;
+	border: 1px solid #ddd;
+	border-bottom: 0;
+	color: #444;
+	font-weight: 600;
+	line-height: 24px;
+	padding-left: 10px;
+	
+}
+#selectDetail .detailMain{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+#selectDetail .detailMain .agg_list{
+	width: 28%;
+	height: 100%;
+	line-height: 26px;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#selectDetail .detailMain .selected_list{
+	width: 72%;
+	height: 100%;
+	border: 1px solid #DDDDDD;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+ .detailMain .agg_list .agg_title,.detailMain .selected_list .select_title{
+    width: 100%;
+    height: 26px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 10px;
+    padding-top: 4px;
+    font-weight: 600;
+    background: #eee;
+ }
+ .detailMain .agg_list .agg_title p span,.detailMain .selected_list .select_title p span{
+    padding-right: 4px;
+    color: #426e95;
+ }
+ .selected_list .description{
+    width: 100%;
+    height: 80px;
+    border-top: 1px solid #ddd;
+    background: #f4f5f6;
+    position: absolute;
+    bottom: 0;
+    padding-right: 20px;
+    padding-top: 10px;
+ }
+ .description .infotitle{
+    width: 12%;
+    height: 100%;
+    text-align: center;
+    line-height: 61px;
+    float: left;
+ }
+ .description .edit{
+    width: 85%;
+    height: 90%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    float: left;
+ }
+.agg_list .search_box{
+	width: 100%;
+	height: 26px;
+	border-bottom: 1px solid #ddd;
+	background: #F4F5F6;
+	overflow: hidden;
+    padding: 2px 0 0 8px;
+	overflow: hidden;
+}
+.agg_list .search_box input{
+	width: 140px;
+	float: left;
+	color: #000;
+	text-indent: 1em;
+}
+.agg_list .search_box .operate{
+    width: 100%;
+    height: 25px;
+    background: #F4F5F6;
+    padding-top: 3px;
+    border-bottom: 1px solid #ddd;
+}
+.agg_list .search_box .operate li{
+	display: inline-block;
+	cursor: pointer;
+	padding:0 3px ;
+}
+.agg_list .search_box .operate li span{
+	color: #426e95;
+}
+.agg_list .treebox{
+	float: left;
+	margin-left: -10px;
+}
+.selected_list .operate{
+	width: 100%;
+	height: 26px;
+	background: #F4F5F6;
+	padding-top: 4px;
+}
+.selected_list .operate .add_remove span{
+	padding: 0 8px;
+	cursor: pointer;
+}
+
+.select_table{
+	visibility: hidden;
+    width: 100%;
+    border-top: 2px solid #ddd;
+}
+.select_table tr{
+	width: 100%;
+	height: 24px;
+	display: inline-table;
+}
+.select_table tr div{
+    border: 1px solid #ddd;
+    display: table-cell;
+    border-top: 0;
+    width: 20px;
+    height: 24px;
+}
+.select_table tr th{
+    border: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    background: #eee;
+    text-align: center;
+    border-top: 0;
+    width: 20px;
+    font-weight: 600;
+    
+}
+.select_table tr td{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.select_table .bgcolor:focus{
+	background-color: #ccc;
+}
+
+/*树菜单列表超出区域滚动*/
+#treebox{
+    width: 100%;
+    height: calc(100% - 26px);
+    overflow-y: scroll;
+}
+/*表格区域超出区域滚动*/
+.table_wrap{
+	height: calc(100% - 130px);
+	overflow-y: auto;
+}
+/*选中节点样式*/
+#selectTree .ztree li a.curSelectedNode{
+	padding-top: 0px;
+    background-color: #f7f7f9;
+    color: black;
+    height: 18px;
+    border: 1px #9ea2b9 solid;
+    opacity: 0.9;
+}

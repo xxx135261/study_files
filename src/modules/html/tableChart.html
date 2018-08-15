@@ -1,0 +1,141 @@
+<div class="tableChart">
+    <div class="midcon-60">
+        <div class="midconbox-50">
+            <div class="midconbox-con">
+                <div class="mid_header">
+                    <span>指标配置</span>
+                    <div class="index-input" :class="{error: !config.indexSetName}">
+	                    <label class="textred">*</label><label>指标集：</label>
+	                    <input type="text" placeholder="请输入指标集名称" v-model="config.indexSetName"/>
+	                </div>
+                </div>
+                <div class="cell_con quota-config">
+            		<div class="table_wrap">
+            			<div class="select-wrap">
+							 <aggConfigTemplate ref="aggConfigTemplate" :numLimit="30" @updateSelection="handleSelection"></aggConfigTemplate>
+	                    </div>
+						<div class="table_header">
+							<span>指标名称</span>
+							<span>基础指标</span>
+							<span>指标参数</span>
+							<span>操作</span>
+						</div>
+						<ul class="table_body">
+							<li v-for="(value, index) in config.columns" :key="index" :tabindex="index">
+								<span :title="value.header">{{value.header}}</span>
+								<span :title="value.baseName">{{value.baseName}}</span>
+								<span :title="value.showProperties">{{value.showProperties}}</span>
+								<span >
+									<i class="fa fa-arrows move" @mousemove.stop="$emit('move')"></i>
+									<i class="fa fa-trash-o delete" @click.stop="$emit('deleItem',index,config.columns,'tableChart')"></i>
+								</span>
+							</li>
+						</ul>
+					</div>
+                </div>
+            </div>
+        </div>
+        <!--表格属性配置-->
+        <div class="midconbox-50">
+            <div class="midconbox-con">
+                <div class="mid_header">
+                    <span>表格属性配置</span>
+                </div>
+                <div class="cell_con table-config">
+                	<!--表格全局属性-->
+                	<div class="all_config">
+                		<div class="header"><span><i class="caret" @click="tableConfigSlide($event)"></i>表格全局属性</span></div>
+                		<div class="content">
+                			<div class="check-select col_drag float">
+		                		<span>表格列拖拽</span>
+		                		<label class="label">
+						              <input class="input col_drag" type="checkbox" name="col_drag">
+						              <span class="span"></span>
+						        </label>
+		                	</div>
+		                	<div class="check-select sparkline float">
+		                		<span>迷你折线图</span>
+		                		<label class="label">
+						              <input class="input sparkline" type="checkbox" name="sparkline">
+						              <span class="span"></span>
+						        </label>
+		                	</div>
+                		</div>
+                	</div>
+                	<!--表格列属性-->
+                	<div class="col_config">
+                		<div class="header"><span><i class="caret" @click="tableConfigSlide($event)"></i>表格列属性</span></div>
+                		<div class="content">
+                			<div class="check-select col_fixed float">
+                				<span>表格列固定</span>
+	                			<label class="label">
+						              <input class="input" type="checkbox" name="">
+						              <span class="span"></span>
+						        </label>
+					        </div>
+		                	<div class="check-select sparkline float">
+		                		<span>迷你折线图</span>
+		                		<label class="label">
+						              <input class="input" type="checkbox" name="">
+						              <span class="span"></span>
+						        </label>
+		                	</div>
+		                	<div class="check-select align-way cell-align">
+		                		<span>单元格文本对齐方式</span>
+		                		<select name="" class="align">
+		                			<option value="">左对齐</option>
+		                			<option value="">居中</option>
+		                			<option value="">右对齐</option>
+		                		</select>
+		                	</div>
+		                	<div class="check-select align-way">
+		                		<span>表头文本对齐方式</span>
+		                		<select name="" class="align">
+		                			<option value="">左对齐</option>
+		                			<option value="">居中</option>
+		                			<option value="">右对齐</option>
+		                		</select>
+		                	</div>
+                		</div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--高级配置-->
+    <div class="rightcon rightcon-40">
+        <div class="midconbox-100">
+            <div class="mid_header">
+                <span>高级配置</span>
+            </div>
+            <div class="cell_con hset-wrap">
+                <div class="agg-select">
+                    <span>维度选择：</span>
+                    <select class="input_name" v-model="config.advancedConfig.dimension">
+                        <option value="">--请选择维度--</option>
+                        <option v-for="item in dimension" :value="item.uniqueId">
+                            {{item.name}}
+                        </option>
+                    </select>
+                    <span class="more">更多</span>
+                </div>
+                <div class="agg-select">
+                    <span>筛选条件：</span>
+                    <select class="input_name" v-model="config.advancedConfig.filtration">
+                        <option value="">--请选择筛选条件--</option>
+                        <option value='[Security Type in (股票)]'>股票</option>
+                    </select>
+                    <span class="more">更多</span>
+                </div>
+                <div class="agg-select">
+                    <span>展示设置：</span>
+                    <select class="input_name" v-model="config.advancedConfig.exhibition">
+                        <option value="">--请选择展示设置--</option>
+                        <option v-for="(option, index) in exhibitionOptions" :value="option.value">{{option.name}}</option>
+                    </select>
+                    <span class="more">更多</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

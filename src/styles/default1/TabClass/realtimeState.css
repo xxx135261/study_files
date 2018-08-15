@@ -1,0 +1,37 @@
+/* 实时盯盘样式 */
+.realTime .panel-heading {
+    padding: 8px 15px;
+    border-radius: 0;
+}
+
+.realTime .panel-title {
+    font-size: 14px;
+}
+.realtimeState .panel{
+    margin-bottom: 0px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.realTime .panel-default > .panel-heading {
+    color: #333;
+    background-color: #fff;
+}
+
+.realTime .panel-body {
+    margin-top: 0;
+}
+
+td.error-font div.cell {
+    color: #ddd !important;
+}
+
+td.green-font  div.cell{
+    color: #29be1f !important;
+}
+
+td.red-font div.cell {
+    color: #ff6966 !important;
+}

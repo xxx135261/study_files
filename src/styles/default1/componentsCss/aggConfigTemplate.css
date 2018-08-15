@@ -1,0 +1,543 @@
+/*头部*/
+#aggConfig_wrap .aggConfig  .modal-dialog{
+	height: calc(100% - 90px)!important;
+}
+#aggConfig_wrap .aggConfig .modal-header{
+    padding: 8px 15px!important;
+}
+#aggConfig_wrap .aggConfig .modal-header .close{
+	margin-top: -4px;
+}
+#aggConfig_wrap .aggConfig .modal-header .close span{
+    font-size: 26px;
+    color: #000;
+}
+/*中间modal-body*/
+#aggConfig_wrap .aggConfig .modal-content .modal-body{
+    height: calc(100% - 96px);
+    padding: 0;
+    top: 40px;
+}
+#aggConfig_wrap .aggConfig .modal-body .body_header{
+	height: 30px;
+    display: flex;
+    background: #eee;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+}
+#aggConfig_wrap .aggConfig .modal-body .body_header li{
+    margin: 3px -4px 0 10px;
+    line-height: 20px;
+    cursor: pointer;
+}
+#aggConfig_wrap .aggConfig .modal-body .body_header li button{
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 0 4px 0 0px;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+#aggConfig_wrap .aggConfig .modal-body .body_header li button:disabled {
+	opacity: 0.6;
+    cursor: not-allowed;
+}
+#aggConfig_wrap .aggConfig .modal-body .body_header li span{
+	display: inline-block;
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+    padding-bottom: 3px;
+    background: url(../../../../static/images/common/logos/btn_flag.png);
+}
+#aggConfig_wrap .aggConfig .body_header li.addClass span{
+    background-position: -6px -7px;
+}
+#aggConfig_wrap .aggConfig .body_header li.addAgg span{
+	background-position: -6px -7px;
+}
+#aggConfig_wrap .aggConfig .body_header li.modifiAgg span{
+    background-position: -110px -10px;
+}
+#aggConfig_wrap .aggConfig .body_header li.deleteAgg span{
+  	background-position: -41px -8px;
+}
+/*查询部分样式*/
+#aggConfig_wrap .aggConfig .modal-body .search_wrap{
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 10px;
+    background: #ddd;
+    border-top: 1px solid #ccc;
+}
+#aggConfig_wrap .aggConfig .modal-body .search_wrap input{
+	width: 200px;
+	height: 26px;
+	line-height: 26px;
+	border-radius:3px;
+	cursor: default;
+	text-indent: 4px;
+}
+#aggConfig_wrap .aggConfig .modal-body .search_wrap .searchwrap{
+    display: inline-block;
+    position: relative;
+}
+#aggConfig_wrap .aggConfig .modal-body .search_wrap .icon-s{
+    position: absolute;
+    display: inline-block;
+    right: 1px;
+    top: 1px;
+    font-weight: 400;
+    color: #747a9b;
+    background: #eeeeee;
+    border-left: 1px solid #ddd;
+    width: 26px;
+    height: 24px;
+    /*cursor: pointer;*/
+    line-height: 24px;
+    text-align: center;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+#aggConfig_wrap .aggConfig .modal-body .search_wrap .icon-s:hover{
+	/*background: #DDD;*/
+}
+#aggConfig_wrap .aggConfig .search-list {
+    position: absolute;
+    width: 174px;
+    left: 75px;
+    z-index: 100;
+    background-color: #f9f9f9;
+    padding: 2px 6px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    box-sizing: border-box;
+    border: 1px solid #ebeef5;
+}
+#aggConfig_wrap .aggConfig .search-list li:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+/*底部modal-fotter*/
+#aggConfig_wrap .aggConfig .modal-content .modal-footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 10px 15px;
+    margin-top: 0;
+}
+
+/*重写树形控件样式*/
+.treeTable{
+    height: calc(100% - 58px);
+    position: relative;
+}
+.treeTable .tableMain{
+	height: calc(100% - 28px);
+	height: -moz-calc(100% - 28px);
+	height: -webkit-calc(100% - 28px);
+}
+.treeTable .ztree {
+	height: 100%;
+    padding: 0;
+    border-left: 1px solid #E3E3E3;
+    border-right: 1px solid #E3E3E3;
+    border-bottom: 1px solid #E3E3E3;
+}
+.treeTable .ztree li{
+	padding: 0;
+}
+.treeTable li.level0:last-of-type{
+	border-bottom: 1px solid #DDD;
+}
+.treeTable li.level0 ul li.level1 .fnt{
+	/*padding-left: 28px;*/
+}
+.treeTable .level1 .fnt{
+	padding-left: 10px;
+}
+.treeTable .level2 .fnt{
+	padding-left: 20px;
+}
+.treeTable .level3 .fnt{
+	padding-left: 30px;
+}
+.treeTable .level4 .fnt{
+	padding-left: 40px;
+}
+.treeTable .level5 .fnt{
+	padding-left: 50px;
+}
+.treeTable .level6 .fnt{
+	padding-left: 60px;
+}
+.treeTable .level7 .fnt{
+	padding-left: 70px;
+}
+.treeTable .level8 .fnt{
+	padding-left: 80px;
+}
+.treeTable .level9 .fnt{
+	padding-left: 90px;
+}
+.treeTable .level10 .fnt{
+	padding-left: 90px;
+}
+/*checkbox图标*/
+.treeTable .ztree li span.button.chk.checkbox_false_full{
+	background-position:1px 0px;
+}
+.treeTable  .ztree li span.button.chk.checkbox_true_full{
+	background-position: -14px 0;
+}
+.treeTable .ztree li span.button.chk{
+	display: inline-block;
+	height: 14px;
+    width: 14px;
+    margin-left: 18px;
+}
+.ztree li span.button.noline_docu{
+	display: none;
+}
+.treeTable .ztree li a {
+    height: 28px;
+    padding: 0px;
+}
+.treeTable .ztree li > a {
+    width: 100%;
+}
+.treeTable .ztree .divTd{
+	text-align: left;
+    white-space: nowrap;
+    background-clip: padding-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.treeTable .ztree .fnt{
+	width: 20%;
+}
+.treeTable .ztree .basic_agg{
+	padding-left: 5px;
+	width: 24%;
+}
+.treeTable .ztree .agg_parame{
+	padding-left: 5px;
+	width: 56%;
+}
+/*选中节点变的背景色*/
+.treeTable .ztree li a.curSelectedNode {
+    padding-top: 0px;
+    background-color: #f4f5f6;
+    opacity: 1;
+    border: 0;
+    height: 28px;
+}
+.treeTable .ztree li ul {
+    padding-left: 0px
+}
+.treeTable .ztree div.divTd span {
+    vertical-align: middle!important;
+    margin: 0 1px;
+}
+.treeTable .ztree div.divTd {
+ 		height: 100%;
+        line-height: 30px;
+        border-top: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        display: inline-block;
+        box-sizing: border-box;
+        color: #6c6c6c;
+        font-size: 12px;
+        overflow: hidden
+}
+/*指标名称第一列*/
+.treeTable .ztree div.divTd:first-child {
+    text-align: left;
+    text-indent: 10px;
+    border-left: none;
+}
+/*表格头*/
+.treeTable .head {
+    width: 100%;
+    background: #ddd;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: 28px;
+}
+.treeTable .head div.divTd {
+    line-height: 26px;
+    float: left;
+    text-align: center;
+    color: #393939;
+    font-weight: bold;
+    border-top: 0;
+    border-left: 1px solid #ccc;
+}
+.treeTable .ztree .ck{
+    padding: 0 5px;
+    margin: 2px 3px 7px 3px;
+}
+/*表格超出滚动*/
+.treeTable {
+    position: relative;
+}
+.treeTable .row_box{
+    height: calc(100% - 26px);
+    position: relative;
+}
+.treeTable .row_wrap{
+   position: relative;
+}
+/*修改指标弹窗样式*/
+.value_def_modal .modal-dialog{
+	width:600px!important;
+    margin-left: 0px!important;
+    left: 30%!important;
+    top: 20%!important;
+    height: 430px;
+    border-radius: 5px;
+}
+.value_def_modal .modal-content{
+	border-radius: 5px;
+}
+.value_def_modal .body-main{
+	height: calc(100% - 45px);
+}
+.value_def_modal .body-main .parameter{
+	width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.value_def_modal .modal-header,.crete_category_modal .modal-header{
+    padding: 5px 0 8px 15px;
+}
+.value_def_modal .modal-title,.crete_category_modal .modal-title{
+    line-height: 20px;
+    font-size: 16px;
+    color: #fff;
+}
+.value_def_modal .modal-header .close,.crete_category_modal .modal-header .close{
+	width: 30px;
+}
+.value_def_modal .modal-header .close span,.crete_category_modal .modal-header .close span{
+	color: #fff;
+}
+.modal-header .close span{
+	font-size: 20px;
+}
+/*中间部分*/
+.value_def_modal .modal-body{
+	position: relative;
+    top: 0;
+    width: 100%;
+    height: calc(100% - 90px);
+}
+.value_def_modal .modal-body .body-header{
+    height: 28px;
+}
+.value_def_modal .modal-body .body-header .aggname,
+.value_def_modal .modal-body .body-header .aggbasic{
+    float: left;
+    line-height: 35px;
+    padding-top: 2px;
+    margin-right: 50px;
+    position: relative;
+}
+.value_def_modal .modal-body .body-header .aggbasic select,
+.value_def_modal .modal-body .body-header .aggname input{
+	margin-bottom: 0;
+    margin: 5px 0;
+    height: 28px;
+    line-height: 28px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    width: 168px;
+	text-indent: 4px;
+}
+.value_def_modal .modal-body .body-header .aggname .notice,
+.value_def_modal .modal-body .body-header .aggbasic .notice{
+	position: absolute;
+	top: 40px;
+	left: 40%;
+}
+.notice i,.notice span{
+	color: red;
+}
+.value_def_modal .modal-body .body-main .title{
+    display: block;
+    height: 30px;
+    margin: 27px 0;
+    line-height: 28px;
+    border-bottom: 1px solid #ddd;
+}
+.value_def_modal .modal-body .body-main .title span{
+    line-height: 34px;
+    font-size: 13px;
+    padding-bottom: 3px;
+}
+.value_def_modal .modal-body .body-main .title span i{
+	padding: 0 7px 0 5px;
+}
+.value_def_modal .modal-body .parameter div{
+    height: 45px;
+    float: left;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+.value_def_modal .modal-body .parameter .parame_item{
+	position: relative;
+}
+.value_def_modal .modal-body .parameter .parame_item .notice{
+    position: absolute;
+    left: 70px;
+    top: 38px;
+}
+.value_def_modal .modal-body .parameter .parame_item .parame_name{
+    display: inline-block;
+    vertical-align: middle;
+    width: 82px;
+    text-align: left;
+    white-space: nowrap;
+    background-clip: padding-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+.value_def_modal .modal-body .parameter .parame_item select,
+.value_def_modal .modal-body .parameter .parame_item input{
+	margin-bottom: 0;
+    margin: 5px 0;
+    height: 28px;
+    line-height: 28px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    width: 168px;
+    text-indent: 4px;
+}
+
+.value_def_modal .modal-footer{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin-top: 0;
+    padding: 10px 20px 10px 0px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+.value_def_modal .modal-footer .btn{
+	height: 26px;
+	line-height: 12px;
+}
+
+/*新增分类弹窗*/
+.crete_category_modal .modal-dialog{
+    width: 450px;
+    height: 200px!important;
+    top: 20%;
+}
+.crete_category_modal .modal-dialog .modal-content{
+	width: 100%;
+	height: 100%;
+}
+.crete_category_modal .modal-footer{
+	padding: 0;
+	margin-top: 0;
+}
+.crete_category_modal .modal-footer .btn{
+	height: 25px;
+    line-height: 11px;
+    text-align: center;
+    margin: 7px;
+}
+.crete_category_modal .modal-body{
+	height: calc(100% - 74px);
+}
+.crete_category_modal.modal-body .wrap{
+	margin: 0 auto;
+}
+.crete_category_modal .modal-body .wrap .parent_devide,.crete_category_modal .modal-body .wrap .devide_name{
+    width: 250px;
+    margin: 0 auto;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+.crete_category_modal .modal-body .wrap .devide_name .notice{
+    position: absolute;
+    bottom: 10px;
+    left: 40%;
+}
+.crete_category_modal .modal-body .wrap input{
+    height: 24px;
+    width: 180px;
+    text-indent: 4px;
+    float: right;
+}
+/*尚未保存提示弹窗Style*/
+.save_notice_modal .modal-dialog{
+	width: 350px;
+	height: 142px;
+	margin: 0;
+	position: absolute;
+	top: 35%;
+	left: 38%;
+}
+.save_notice_modal .modal-header{
+	padding: 10px;
+}
+.save_notice_modal .modal-footer{
+	padding: 6px 14px 6px 0;
+}
+.save_notice_modal .modal-footer .btn{
+	height: 26px;
+	line-height: 12px;
+}
+
+/*输入下拉框*/
+#aggConfig_wrap{
+   display: inline-block;
+    width: calc(100% - 114px);
+    height: 100%;
+    position: relative;
+    float: right;
+    line-height: 28px;
+}
+.input_wrap{
+    width: calc(100% - 66px);
+    height: 24px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    border: 1px solid #ddd;
+}
+.input_wrap input{
+    width: 100%;
+    min-width: 100px;
+    height: 22px;
+    text-indent: 4px;
+    border: 0;
+    background: #fff;
+}
+.input_wrap .operate_wrap{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.input_wrap span{
+    display: block;
+    float: left;
+    width: 20px;
+    height: 22px;
+    text-align: center;
+    line-height: 22px;
+    background: #F4F5F6;
+    font-size: 10px;
+    border-left: 1px solid #ddd;
+}
+.input_wrap span:hover{
+	background: #ccc;
+	cursor: pointer;
+}
