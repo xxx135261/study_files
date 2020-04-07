@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>A</title> 
+</head> 
+<body> 
+    <textarea id="message" value="高层密码"></textarea><br/> 
+    <button id="test">看看员工在说什么</button><br/><br/><br/>
+    员工们：<br/> 
+    <iframe src="b.html" width="500" height="300" id="iframe"></iframe> 
+    <script> 
+			var message = 'jsjjsjsjsj';
+			let iframe = document.getElementById('iframe');
+			iframe.onload = function() {
+				iframe.contentWindow.postMessage(message, '*');
+			}
+
+			// window.addEventListener('message', function (e) {
+			// 	let data = e.data;
+			// 	console.log(data);         
+			// }, false);
+    </script> 
+</body> 
+</html>
