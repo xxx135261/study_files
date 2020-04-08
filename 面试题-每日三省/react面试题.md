@@ -21,3 +21,83 @@
 - componentWiiUnmount,在组建从dom中移除之前立即调用；
 4、setState是异步执行的，提升性能；
 5、单项的数据流，指的是从数据层的变化去影响视图层的变化，数据驱动视图的变化，只需关注数据就可以了；
+##### 4、说说context有哪些属性
+Context 可以让我们无须明确地传遍每一个组件，就能将值深入传递进组件树(跨级传递）。
+const mycontext = react.createContext();
+- 1、mycontext.provider
+```
+const ThemeContext = React.createContext('light');
+class App extends React.Component {
+  render() {
+    // 使用一个 Provider 来将当前的 theme 传递给以下的组件树。
+    // 无论多深，任何组件都能读取这个值。
+    // 在这个例子中，我们将 “dark” 作为当前的值传递下去(传递给<ThemedButton />组件)。
+    return (
+      <ThemeContext.Provider value="dark">
+        <Toolbar />
+      </ThemeContext.Provider>
+    );
+  }
+}
+
+// 中间的组件再也不必指明往下传递 theme 了。
+function Toolbar() {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+class ThemedButton extends React.Component {
+  static contextType = ThemeContext;  //contextType 读取当前的 theme context，React 会往上找到最近的 theme Provider，然后使用它的值。
+  render() {
+    return <Button theme={this.context} />;
+  }
+}
+
+```
+- 2、mycontext.contextType
+> 使用 this.context 来消费最近 Context 上的那个值。你可以在任何生命周期中访问到它，包括 render 函数中。
+
+```
+const mycontext = react.createContext();
+class MyClass extends React.Component {
+  componentDidMount() {
+    let value = this.context;
+    /* 在组件挂载完成后，使用 MyContext 组件的值来执行一些有副作用的操作 */
+  }
+  componentDidUpdate() {
+    let value = this.context;
+    /* ... */
+  }
+  componentWillUnmount() {
+    let value = this.context;
+    /* ... */
+  }
+  render() {
+    let value = this.context;
+    /* 基于 MyContext 组件的值进行渲染 */
+  }
+}
+MyClass.contextType = mycontext;
+
+```
+- 3、mycontext.Consumer
+```
+<MyContext.Consumer>
+  {value => /* 基于 context 值进行渲染*/}
+</MyContext.Consumer>
+```
+- 4、mycontext.displayName
+`context`对象接收一个名为`displayName`的property,`React DevTools` 使用该字符串来确定`context`要显示的内容。
+```
+const mycontext = React.createContext();
+mycontext.displayName = 'MyDisplayName';
+
+<mycontext.Provider>  //`MyDisplayName.Provider`在devTools中
+<mycontext.Consumer>   //`MyDisplayName.Consumer`在devtools中
+```
+- 5、contextType是什么，它有什么用？
+定义当前组件要使用哪一个context
+
