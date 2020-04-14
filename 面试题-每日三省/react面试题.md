@@ -15,14 +15,14 @@
 - componentWillmount,渲染前的运行函数；
 - componentDidmount,在第一次渲染后调用，在这个组件中进行ajax的请求；
 - componentWillReceiveProps,在组件接收到一个新的prop时调用（更新后），这个方法在组件render时不会被调用；
-- shouldComponentUpdat,返回一个布尔值，决定组件是否重新渲染，在组件接收到新的props或者state时被调用；
-- componentWillUpdata,在组件接收到新的props或state时，但还没有调用render时调用，第一次渲染前调用；
-- componentDidUpdat,在组建完成更新后立即调用；
+- shouldComponentUpdate,返回一个布尔值，决定组件是否重新渲染，在组件接收到新的props或者state时被调用；
+- componentWillUpdate,在组件接收到新的props或state时，但还没有调用render时调用，第一次渲染前调用；
+- componentDidUpdate,在组建完成更新后立即调用；
 - componentWiiUnmount,在组建从dom中移除之前立即调用；
 4、setState是异步执行的，提升性能；
 5、单项的数据流，指的是从数据层的变化去影响视图层的变化，数据驱动视图的变化，只需关注数据就可以了；
 ##### 4、说说context有哪些属性
-Context 可以让我们无须明确地传遍每一个组件，就能将值深入传递进组件树(跨级传递）。
+Context 可以让我们无须明确地传遍每一个组件，就能将值深入传递进组件树(跨组件传递）。
 const mycontext = react.createContext();
 - 1、mycontext.provider
 ```
@@ -98,6 +98,11 @@ mycontext.displayName = 'MyDisplayName';
 <mycontext.Provider>  //`MyDisplayName.Provider`在devTools中
 <mycontext.Consumer>   //`MyDisplayName.Consumer`在devtools中
 ```
-- 5、contextType是什么，它有什么用？
+##### 5、contextType是什么，它有什么用？
 定义当前组件要使用哪一个context
-
+##### 6、render在什么时候会被触发？
+- 1、当组件第一次挂载时
+- 2、当使用`this.setState()`，同时还会触发子组件的render
+- 3、当state发生变化时，PureComponent不会随着parent的render而重新render
+- 4、当组件收到新的`props`，pure component会被重新render,包括他的children,哪怕它并没有用到这个变化
+- 5、让shouldComponentUpdate 返回false，可以阻止component render
