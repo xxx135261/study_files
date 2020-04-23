@@ -2,7 +2,25 @@
 <head> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 </head>
+<style>
+	html,body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	.content {
+		width: 300px;
+		height: 300px;
+		background: orange;
+		margin: 0 auto; /*水平居中*/
+		position: relative;
+		top: 50%; /*偏移*/
+		margin-top: -150px; 
+	}
+</style>
 <body> 
+		<div class="content"></div>
     <textarea id="message" value="员工的密码"></textarea><br/>
     <button id="test">看看领导在说什么</button><br/> 
     <script> 
@@ -13,6 +31,16 @@
 				// 向父窗框返回响应结果
 				console.log(e.data);
 			}, false);
+
+			var name = "world";
+			(function() {
+				if(typeof name === 'undefined'){
+					var name = "xx"
+					console.log('hello'+ name)
+				}else{
+					console.log('hello'+ name)
+				}
+			})()
 		</script>
 </body>
 </html>
