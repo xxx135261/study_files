@@ -8,18 +8,20 @@
 6. 在src目录下新建`index.js`作为项目入口
 7. 在`build/webpack.prod.js`下导出配置对象，先配置入口及出口，添加如下代码
 ```javascript
-const path = require('path');
-const entryPath = path.resolve(__dirname, '../src/index.js');
-const outputPath = path.resolve(__dirname, '../dist');
+/* 编译生产代码文件 */
+const path = require('path')
+const entryPath = path.resolve(__dirname, '../src/index.js')
+const outPath = path.resolve(__dirname, '../dist')
+
 module.exports = {
-	entry: {
-		app: entryPath
-	},
-	output: {
-		path: outputPath,
-		filename: 'js/[name].[hash:8].js',
-    		publicPath: '/'
-	},
+    entry: {
+        app: entryPath
+    },
+    output: {
+        path: outPath,
+        filename: 'js/[name].[hash:8].js', //[name]为入口键的名字，例如entry中的app，[hash:8]为文件名添加长度为8位的哈希值，便于缓存
+        publicPath: '/'
+    },
 }
 ```
 `释:` 
@@ -27,19 +29,20 @@ module.exports = {
 `filename`中`[name]`对应入口的键，默认为`main`，项目中为`app`，`[hash:8]`是为文件名添加长度为8位的哈希值，便于缓存。
 
 8. 在`package.json` `script`中添加`"build": "webpack --config=build/webpack.prod.js"`,然后在终端输入`npm run build`进行第一次打包。
-    ![第一次打包结果](https://img-blog.csdnimg.cn/20191022091229327.png)
+	![image](https://user-images.githubusercontent.com/29649359/115710466-f678ad80-a3a4-11eb-8a3f-7394c10d8472.png)
 
-9. 完成了第一次打包！但报了警告，意思告诉我们要添加`mode`为`production`或`development`的选项配置。在`webpack.prod.js`中添加`mode: 'production'`，再次使用`npm run build`打包，警告完美去除，进入下一阶段：
+9. 完成了第一次打包！但报了警告，意思告诉我们要添加`mode`为`production`或`development`的选项配置。在`webpack.prod.js`中添加`mode: 'production'`，再次使用`npm run build`打包：
 
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191022091157276.png)
+    ![image](https://user-images.githubusercontent.com/29649359/115710142-9aae2480-a3a4-11eb-9ec7-2b5cd62298e1.png)
 
 
 ## 2.配置loader
 1. loader主要作用是将浏览器不识别的内容转换为浏览器可以识别的内容，例如通过`babel-loader`将`es5+`语法的js转换为`es5`语法。
 2. 在`src`目录下新建`index.scss`文件，可以随便写入sass样式，例如
 ```javascript
-#example {
-	font-size: 15px;
+#main-page {
+    font-size: 14px;
+    color: #666;
 }
 ```
 3. 在`index.js`中引入
@@ -51,7 +54,8 @@ import './index.scss';
 `sass-loader`将`sass`语法转换为`css`，
 `css-loader`能识别css中的`import()、 url()`，
 `postcss-loader`能根据各个浏览器平台提供css代码兼容方案，
-`autoprefixer`通过`postcss-loader`配置自动为css代码添加各个浏览器前缀 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019102209251929.png)
+`autoprefixer`通过`postcss-loader`配置自动为css代码添加各个浏览器前缀 
+	![image](https://user-images.githubusercontent.com/29649359/115711454-1c528200-a3a6-11eb-8e7e-11f2db1e48d0.png)
 5. 添加loader之前，我们先配置`postcss-loader`，项目根目录下创建`postcss.config.js`文件，添加如下代码
 ```javascript
 module.exports = {
@@ -81,10 +85,10 @@ module.exports = {
 要在`module.rules`中添加loader，`test`为匹配的文件，可以用正则来判断文件后缀名，`use`是使用的loader
 loader的执行顺序是自下而上的，这里执行的顺序依次是`sass-loader`、`postcss-loader`、`css-loader`。
 
-7. 再次使用`npm run build`打包，打包成功!每一次的打包都激动人心~继续使用更多的loader来匹配项目中的实际情况。
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191022094529642.png)
+7. 再次使用`npm run build`打包，打包成功!
+	![image](https://user-images.githubusercontent.com/29649359/115712713-ac44fb80-a3a7-11eb-8078-d19d6d7a2eac.png)
 
-8. `npm i -D @babel/core @babel/plugin-syntax-dynamic-import @babel/preset-env`添加依赖。根目录下添加`babel.config.js`文件，添加如下代码
+8. 继续使用更多的loader来匹配项目中的实际情况，`npm i -D @babel/core @babel/plugin-syntax-dynamic-import @babel/preset-env`添加依赖。根目录下添加`babel.config.js`文件，添加如下代码
 ```javascript
 module.exports = {
   presets: [
