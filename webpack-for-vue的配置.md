@@ -122,11 +122,14 @@ module.exports = {
 ```
 将`node_modules`文件夹排除，此时我们可以识别`js`代码，继续添加loader
 
-10. 在`src`下添加`App.vue`，并在`index.js`中引入，此时打包必会报错，`npm i -D vue-loader`添加官方推荐的
+10. 在`src`下添加`App.vue`，并在`index.js`中引入，此时打包必会报错。
+	![image](https://user-images.githubusercontent.com/29649359/116180492-96d72500-a74b-11eb-99e1-25831e5ada20.png)
+
+11. `npm i -D vue-loader`添加官方推荐的
     [vue-loader](https://vue-loader.vuejs.org/zh/guide/#%E6%89%8B%E5%8A%A8%E8%AE%BE%E7%BD%AE)
 `释:`
 `vue-loader`能识别`.vue`文件，将其中的`script` `scss`提取出各自的文件，`V15`版本必须要引入`VueLoaderPlugin`插件(插件配置之后说明，我们先完成vue-loader的配置)
-11. 在`webpack.prod.js`中添加`vue-loader`
+12. 在`webpack.prod.js`中添加`vue-loader`
 ```javascript
 ...(省略相同代码)
 const { VueLoaderPlugin } = require('vue-loader');
