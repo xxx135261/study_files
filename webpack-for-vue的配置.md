@@ -231,11 +231,10 @@ module.exports = {
 	]
 }
 ```
-4. 打包，生成的`index.html`自动引入了js文件,继续添加插件
-    ![](https://img-blog.csdnimg.cn/20191022104931535.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p6cTk1MDUyMg==,size_16,color_FFFFFF,t_70)
+4. 打包，生成的`index.html`自动引入了js文件
+	![html-webpack-plugin](https://user-images.githubusercontent.com/29649359/116338696-bbe09c00-a80e-11eb-88da-58a645a7de9e.png)
 
-5. `npm i -D mini-css-extract-plugin`
-此插件主要将css代码分离出来
+5.继续添加插件： `npm i -D mini-css-extract-plugin`此插件主要将css代码分离出来
 ```javascript
 ...(省略相同代码)
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -272,7 +271,7 @@ module.exports = {
 ```
 `filename`是根据源文件打包后文件名，`chunkFilename`是被分离的文件名，分离优化之后再说明
 再次打包，结果如下，css代码被分离出到单独的文件夹中
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019102211020913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p6cTk1MDUyMg==,size_16,color_FFFFFF,t_70)
+	![image](https://user-images.githubusercontent.com/29649359/116339409-f26ae680-a80f-11eb-9500-d5d65acfb6a9.png)
 
 8. `npm i -D clean-webpack-plugin`添加依赖
 ```javascript
