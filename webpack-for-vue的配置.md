@@ -125,7 +125,7 @@ module.exports = {
 10. 在`src`下添加`App.vue`，并在`index.js`中引入，此时打包必会报错。
 	![image](https://user-images.githubusercontent.com/29649359/116180492-96d72500-a74b-11eb-99e1-25831e5ada20.png)
 
-11. `npm i -D vue-loader`添加官方推荐的
+11. `npm i -D vue-loader vue-template-compiler`添加官方推荐的
     [vue-loader](https://vue-loader.vuejs.org/zh/guide/#%E6%89%8B%E5%8A%A8%E8%AE%BE%E7%BD%AE)
 `释:`
 `vue-loader`能识别`.vue`文件，将其中的`script` `scss`提取出各自的文件，`V15`版本必须要引入`VueLoaderPlugin`插件(插件配置之后说明，我们先完成vue-loader的配置)
@@ -152,9 +152,10 @@ module.exports = {
 	]
 }
 ```
-再次打包，又是一次愉快的成功打包。
+再次打包，又是愉快的打包
+![image](https://user-images.githubusercontent.com/29649359/116329919-efb3c580-a7fe-11eb-9556-1257a42f56e9.png)
 
-12. `npm i -D url-loader`添加依赖
+12. 继续添加其他loader,`npm i -D url-loader`
 `url-loader`能处理图片、字体等文件类型，在`webpack.prod.js`中配置
 ```javascript
 ...(省略相同代码)
