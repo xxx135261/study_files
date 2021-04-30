@@ -319,14 +319,13 @@ module.exports = {
 	]
 }
 ```
-通过使用压缩插件前后的打包对比
-    ![使用插件压缩结果](https://img-blog.csdnimg.cn/20191022112340642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p6cTk1MDUyMg==,size_16,color_FFFFFF,t_70)
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191022112447552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2p6cTk1MDUyMg==,size_16,color_FFFFFF,t_70)
-因为目前的代码量不多，但还是能看到压缩插件对打包后文件体积的优化。
+再次打包，两次打包对比（使用压缩插件前后对比）
+![image](https://user-images.githubusercontent.com/29649359/116643718-41e21b80-a9a4-11eb-8567-0d3fe4087838.png)
+![image](https://user-images.githubusercontent.com/29649359/116643730-48709300-a9a4-11eb-81fd-7a70700ebda6.png)
 
 3. `npm i -D happypack thread-loader`添加依赖
-`释:`
-js的node环境是单线程，`happypack`主要通过开启多个进程来加快打包过程，并不是绝对加快，`thread-loader`也是同样的作用，需要加在被加速的loader的前面
+`释:`在构建过程中，最耗时的就是loader的转换操作，js的node环境是单线程，处理文件都是一个一个的去处理的，不能并行处理，`happypack`就是把任务分成多个子进程，并发的进行，子进程处理完，再把结果发给主线程。
+`提示：`由于HappyPack 对file-loader、url-loader 支持的不友好，所以不建议对该loader使用.
 ```javascript
 ...(省略相同代码)
 const HappyPack = require('happypack');
@@ -379,23 +378,20 @@ module.exports = {
 	]
 }
 ```
-`注:` `vue-loader v15`已经不支持`happypack`，因此用`thread-loader`代替
-`happypack` `thread-loader`目前最新版本不支持`sass-loader 8.0.1`，暂时不使用
-
-4. 配置dll来缓存第三方库，`npm i -S vue vue-router vuex element-ui lodash axios`添加依赖并在`index.js`中引入
+4. 配置dll来缓存第三方库，`npm i -S vue vue-router vuex iview lodash axios`添加依赖并在`index.js`中引入
 ```javascript
 import './index.scss';
 import App from './App.vue';
-import element from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import axios from 'axios';
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
 import _ from 'lodash';
-Vue.use(element);
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(iView);
 
 new Vue({
 	el: '#app',
